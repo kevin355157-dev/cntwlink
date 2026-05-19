@@ -81,9 +81,9 @@
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-[0.2em] uppercase">
                 <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-all">PODCAST</a>
-                <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-all">合體者</a>
-                <a href="about.html" class="hover:text-[var(--neon-lime)] transition-all">關於我們</a>
-                <a href="contact.html" class="text-[var(--neon-lime)] border border-[var(--neon-lime)] px-5 py-1.5 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black">聯絡我們</a>
+                <a href="#" class="hover:text-[var(--neon-lime)] transition-all">合體者</a>
+                <a href="#" class="hover:text-[var(--neon-lime)] transition-all">關於我們</a>
+                <a href="#" class="text-[var(--neon-lime)] border border-[var(--neon-lime)] px-5 py-1.5 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black">聯絡我們</a>
             </div>
             <button class="md:hidden text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:menu"></iconify-icon></button>
         </nav>
@@ -95,16 +95,16 @@
         </div>
     </header>
 
-<div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
-    <button class="absolute top-6 right-6 text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:x"></iconify-icon></button>
-    <div class="flex flex-col gap-8 text-center text-3xl font-black italic items-center">
-        <a href="index.html" class="text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">HOME</a>
-        <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">PODCAST</a>
-        <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">合體者</a>
-        <a href="about.html" class="hover:text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">ABOUT</a>
-        <a href="contact.html" class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] px-10 py-3 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic mt-2 text-2xl tracking-[0.1em]" onclick="toggleMenu()">聯絡我們</a>
+    <div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
+        <button class="absolute top-6 right-6 text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:x"></iconify-icon></button>
+        <div class="flex flex-col gap-8 text-center text-3xl font-black italic items-center">
+            <a href="index.html" class="hover:text-[var(--neon-lime)] transition-colors">HOME</a>
+            <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-colors">PODCAST</a>
+            <a href="#" class="hover:text-[var(--neon-lime)] transition-colors">合體者</a>
+            <a href="#" class="hover:text-[var(--neon-lime)] transition-colors">ABOUT</a>
+            <a href="#" class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] px-10 py-3 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic mt-2 text-2xl tracking-[0.1em]">聯絡我們</a>
+        </div>
     </div>
-</div>
 
     <div id="main-wrap" class="bg-grid relative z-10 transition-opacity duration-500 min-h-screen">
         <section class="pt-32 md:pt-40 px-6 pb-10">
@@ -126,8 +126,7 @@
                             <span class="w-1.5 h-6 bg-[var(--neon-lime)]"></span>
                             <h3 class="text-2xl font-black italic uppercase tracking-tighter">兩岸新聞 TOP5</h3>
                         </div>
-                        <div class="flex flex-col gap-6" id="top5-list">
-                            </div>
+                        <div class="flex flex-col gap-6" id="top5-list"></div>
                     </div>
                 </div>
 
@@ -181,7 +180,6 @@
         <p class="opacity-40 text-xs mt-2 uppercase tracking-widest italic">UDN Global Vision Lab / 2026</p>
     </footer>
 
-    
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
@@ -211,7 +209,6 @@
                 MOCK_DATA = Array.isArray(data) ? data : (data.data || []);
                 MOCK_DATA = MOCK_DATA.filter(item => item.id && item.title);
                 
-                // 日期排序：最新到最舊
                 MOCK_DATA.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
                 if(MOCK_DATA.length === 0) {
@@ -225,7 +222,6 @@
                 buildTop5();
                 applyFilters('全部'); 
 
-                // ======= 終極路由功能：使用 Hash (#id=) 完美支援本機與伺服器 =======
                 const hash = window.location.hash;
                 if (hash && hash.startsWith('#id=')) {
                     const urlId = hash.replace('#id=', '');
@@ -235,7 +231,6 @@
                     }
                 }
 
-                // 搜尋框 Enter 鍵綁定
                 const searchInput = document.getElementById('main-search-input');
                 if(searchInput) {
                     searchInput.addEventListener('keypress', (e) => {
@@ -362,14 +357,15 @@
             const nextBatch = gridData.slice(currentIndex, currentIndex + 9);
             nextBatch.forEach(item => {
                 const card = document.createElement('div');
-                card.className = `glass-card relative group reveal h-[360px] rounded-xl cursor-pointer`;
+                // 這裡加入了完美相容手機 2:1 橫式與桌機原樣的響應式 class
+                card.className = `glass-card relative group reveal aspect-[2/1] md:h-[360px] md:aspect-auto rounded-xl cursor-pointer`;
                 const displayDate = item.date ? String(item.date).substring(0, 10) : '';
                 card.innerHTML = `
                     <img src="${item.image_url || 'https://picsum.photos/800/500'}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-8 flex flex-col justify-end z-10">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 md:p-8 flex flex-col justify-end z-10">
                         <span class="text-[var(--neon-lime)] font-black text-[10px] tracking-widest mb-1 uppercase">${item.category || '未分類'}</span>
-                        <h4 class="font-black text-xl group-hover:text-[var(--neon-lime)] transition-colors line-clamp-2">${item.title}</h4>
-                        <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] opacity-40 font-bold">
+                        <h4 class="font-black text-base md:text-xl group-hover:text-[var(--neon-lime)] transition-colors line-clamp-2">${item.title}</h4>
+                        <div class="mt-2 md:mt-4 pt-2 md:pt-4 border-t border-white/10 flex justify-between items-center text-[10px] opacity-40 font-bold">
                             <span>PUB DATE: ${displayDate}</span>
                             <span class="text-[var(--neon-lime)]">READ MORE ➔</span>
                         </div>
@@ -393,13 +389,10 @@
         }
 
         function openDetail(item, pushState = true) {
-            // ======= 終極路由邏輯：使用 Hash =======
             if (pushState) {
                 try {
-                    // 使用 #id=X 而不是 ?id=X，這樣本機檔案也能無痛修改網址！
                     window.history.pushState(null, '', '#id=' + item.id);
                 } catch(e) { 
-                    // 如果還是被擋，直接用最底層的 hash 賦值
                     window.location.hash = 'id=' + item.id;
                 }
             }
@@ -477,10 +470,8 @@
         function goHome(pushState = true) {
             if (pushState) {
                 try {
-                    // 回首頁時清空 hash
                     window.history.pushState(null, '', window.location.pathname + window.location.search);
                 } catch(e) {
-                    // 備案
                     history.replaceState(null, null, ' ');
                 }
             }
@@ -489,7 +480,6 @@
             window.scrollTo({ top: scrollPosBeforeDetail, behavior: 'auto' });
         }
 
-        // 監聽上一頁功能 (監聽 Hash 改變)
         window.addEventListener('popstate', () => {
             const hash = window.location.hash;
             if (hash && hash.startsWith('#id=')) {
@@ -506,6 +496,5 @@
             if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) loadMore(); 
         });
     </script>
-
 </body>
 </html>
