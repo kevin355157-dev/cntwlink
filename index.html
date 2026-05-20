@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -78,7 +77,7 @@
         <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center glass-nav">
             <a href="#" onclick="goHome(true)" class="flex items-center gap-3">
                 <div class="w-3 h-3 bg-[var(--neon-lime)] rounded-full"></div>
-                <span class="text-2xl md:text-3xl font-black tracking-tighter italic uppercase">REUNION·TW</span>
+                <span class="text-2xl md:text-3xl font-black tracking-tighter italic uppercase">兩岸新聞網 | China-Taiwan Link</span>
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-[0.2em] uppercase">
                 <a href="#" class="hover:text-[var(--neon-lime)] transition-all">PODCAST</a>
@@ -99,7 +98,7 @@
     <div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
         <button class="absolute top-6 right-6 text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:x"></iconify-icon></button>
         <div class="flex flex-col gap-8 text-center text-3xl font-black italic items-center">
-            <a href="#" onclick="toggleMenu(); goHome()" class="hover:text-[var(--neon-lime)] transition-colors">HOME</a>
+            <a href="#" onclick="toggleMenu(); goHome(true)" class="hover:text-[var(--neon-lime)] transition-colors">HOME</a>
             <a href="#" class="hover:text-[var(--neon-lime)] transition-colors">PODCAST</a>
             <a href="#" class="hover:text-[var(--neon-lime)] transition-colors">合體者</a>
             <a href="#" class="hover:text-[var(--neon-lime)] transition-colors">ABOUT</a>
@@ -108,11 +107,11 @@
     </div>
 
     <div id="main-wrap" class="bg-grid relative z-10 transition-opacity duration-500 min-h-screen">
-        <section class="pt-32 md:pt-40 px-6 pb-10">
+        <section class="pt-32 md:pt-32 px-6 pb-10">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b-4 border-[var(--neon-lime)] pb-4">
-                    <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">兩岸新聞社</h2>
-                    <div class="relative w-full md:w-80 mt-4 md:mt-0 group/search">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b-4 border-[var(--neon-lime)] pb-4 gap-6 md:gap-0">
+                    <img src="https://hackmd.io/_uploads/BJpV_Lo1Gx.png" alt="兩岸新聞社" class="h-[72px] md:h-[96px] object-contain mx-auto md:mx-0">
+                    <div class="relative w-full md:w-80 group/search">
                         <input type="text" id="main-search-input" placeholder="搜尋專欄..." class="w-full bg-black/30 border border-white/20 text-white px-5 py-3 focus:outline-none focus:border-[var(--neon-lime)] transition-all text-sm font-bold italic">
                         <button onclick="handleMainSearch()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 group-hover/search:text-[var(--neon-lime)] transition-colors">
                             <iconify-icon icon="lucide:search" class="text-2xl"></iconify-icon>
@@ -149,7 +148,7 @@
         </section>
     </div>
 
-    <div id="detail-view" class="hidden bg-grid relative z-20 min-h-screen pt-32 md:pt-40 px-6 pb-24">
+    <div id="detail-view" class="hidden bg-grid relative z-20 min-h-screen pt-32 md:pt-32 px-6 pb-24">
         <div class="max-w-4xl mx-auto">
             <button onclick="goHome(true)" class="flex items-center gap-2 text-[var(--neon-lime)] hover:text-white transition-all mb-10 font-black tracking-widest text-sm uppercase bg-black/40 px-5 py-2 rounded-full border border-[var(--neon-lime)]/30 hover:bg-[var(--neon-lime)] hover:text-black">
                 <iconify-icon icon="lucide:arrow-left"></iconify-icon> 返回新聞列表
@@ -178,7 +177,7 @@
     </div>
 
     <footer class="glass-nav py-20 px-6 border-t border-white/10 text-center relative z-10">
-        <span class="text-4xl font-black tracking-tighter italic uppercase">REUNION·TW</span>
+        <span class="text-4xl font-black tracking-tighter italic uppercase">兩岸新聞網China-Taiwan Link</span>
         <p class="opacity-40 text-xs mt-2 uppercase tracking-widest italic">UDN Global Vision Lab / 2026</p>
     </footer>
 
@@ -226,7 +225,7 @@
                 buildTop5();
                 applyFilters('全部'); 
 
-                // ======= 終極路由功能：使用 Hash (#id=) 完美支援本機與伺服器 =======
+                // Hash 路由檢查
                 const hash = window.location.hash;
                 if (hash && hash.startsWith('#id=')) {
                     const urlId = hash.replace('#id=', '');
@@ -286,7 +285,7 @@
             });
             
             wrap.innerHTML = `
-                <div class="relative w-full h-[450px] rounded-xl overflow-hidden glass-card group cursor-pointer shadow-2xl">
+                <div class="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-xl overflow-hidden glass-card group cursor-pointer shadow-2xl">
                     ${slidesHTML}
                     <button class="nav-btn left-4" onclick="event.stopPropagation(); prevSlide()"><iconify-icon icon="lucide:chevron-left"></iconify-icon></button>
                     <button class="nav-btn right-4" onclick="event.stopPropagation(); nextSlide()"><iconify-icon icon="lucide:chevron-right"></iconify-icon></button>
@@ -363,7 +362,7 @@
             const nextBatch = gridData.slice(currentIndex, currentIndex + 9);
             nextBatch.forEach(item => {
                 const card = document.createElement('div');
-                card.className = `glass-card relative group reveal h-[360px] rounded-xl cursor-pointer`;
+                card.className = `glass-card relative group reveal aspect-[4/3] md:aspect-auto md:h-[360px] rounded-xl cursor-pointer`;
                 const displayDate = item.date ? String(item.date).substring(0, 10) : '';
                 card.innerHTML = `
                     <img src="${item.image_url || 'https://picsum.photos/800/500'}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
@@ -391,19 +390,14 @@
             if(!text) return '';
             const str = String(text).trim();
             if(str.startsWith('<')) return str;
-            
-            // 自動偵測試算表中的換行，轉換為帶有美麗間距的段落
             return str.split(/\r?\n/).map(line => line.trim() ? `<p class="mb-6">${line}</p>` : '').join('');
         }
 
         function openDetail(item, pushState = true) {
-            // ======= 終極路由邏輯：使用 Hash =======
             if (pushState) {
                 try {
-                    // 使用 #id=X 而不是 ?id=X，這樣本機檔案也能無痛修改網址！
                     window.history.pushState(null, '', '#id=' + item.id);
                 } catch(e) { 
-                    // 如果還是被擋，直接用最底層的 hash 賦值
                     window.location.hash = 'id=' + item.id;
                 }
             }
@@ -418,38 +412,46 @@
             
             let htmlParts = [];
             
+            // 主圖 (大圖) -> 靠左排版 (text-left)
             if(item.image_url) {
                 htmlParts.push(`
                     <div class="mb-10 group">
                         <div class="overflow-hidden rounded-xl border border-white/10">
-                            <img src="${item.image_url}" class="w-full h-[300px] md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="${item.image_url}" class="w-full aspect-[4/3] md:aspect-auto md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
-                        ${item.image_source ? `<p class="text-right text-[11px] text-[var(--neon-lime)] mt-3 font-bold tracking-widest uppercase">${item.image_source}</p>` : ''}
+                        ${item.image_source ? `<p class="text-left text-[11px] text-[var(--neon-lime)] mt-3 font-bold tracking-widest uppercase">${item.image_source}</p>` : ''}
                     </div>
                 `);
             }
+            
             if(item.content_1) htmlParts.push(`<div class="article-content mb-12 text-gray-300 leading-relaxed text-lg">${formatContent(item.content_1)}</div>`);
+            
+            // 內容圖 1 -> 靠左排版 (text-left)
             if(item.content_img1_url) {
                 htmlParts.push(`
                     <div class="mb-10 group relative md:px-10">
                         <div class="overflow-hidden rounded-xl border border-white/10 shadow-lg">
-                            <img src="${item.content_img1_url}" class="w-full h-[250px] md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="${item.content_img1_url}" class="w-full aspect-[4/3] md:aspect-auto md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
-                        ${item.content_img1_source ? `<p class="text-right text-[11px] text-[var(--neon-lime)] mt-3 font-bold tracking-widest uppercase">${item.content_img1_source}</p>` : ''}
+                        ${item.content_img1_source ? `<p class="text-left text-[11px] text-[var(--neon-lime)] mt-3 font-bold tracking-widest uppercase md:ml-10">${item.content_img1_source}</p>` : ''}
                     </div>
                 `);
             }
+            
             if(item.content_2) htmlParts.push(`<div class="article-content mb-12 text-gray-300 leading-relaxed text-lg">${formatContent(item.content_2)}</div>`);
+            
+            // 內容圖 2 -> 靠左排版 (text-left)
             if(item.content_img2_url) {
                 htmlParts.push(`
                     <div class="mb-10 group relative md:px-10">
                         <div class="overflow-hidden rounded-xl border border-white/10 shadow-lg">
-                            <img src="${item.content_img2_url}" class="w-full h-[250px] md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img src="${item.content_img2_url}" class="w-full aspect-[4/3] md:aspect-auto md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
-                        ${item.content_img2_source ? `<p class="text-right text-[11px] text-[var(--neon-lime)] mt-3 font-bold tracking-widest uppercase">${item.content_img2_source}</p>` : ''}
+                        ${item.content_img2_source ? `<p class="text-left text-[11px] text-[var(--neon-lime)] mt-3 font-bold tracking-widest uppercase md:ml-10">${item.content_img2_source}</p>` : ''}
                     </div>
                 `);
             }
+            
             if(item.content_3) htmlParts.push(`<div class="article-content mb-12 text-gray-300 leading-relaxed text-lg">${formatContent(item.content_3)}</div>`);
             
             document.getElementById('detail-main-body').innerHTML = htmlParts.join('');
@@ -466,7 +468,7 @@
             const recs = MOCK_DATA.filter(i => String(i.id) !== String(currentId)).sort(() => 0.5 - Math.random()).slice(0, 3);
             recs.forEach(item => {
                 const card = document.createElement('div');
-                card.className = `glass-card relative group h-[280px] rounded-xl cursor-pointer overflow-hidden border border-white/10`;
+                card.className = `glass-card relative group aspect-[4/3] md:aspect-auto md:h-[280px] rounded-xl cursor-pointer overflow-hidden border border-white/10`;
                 card.innerHTML = `
                     <img src="${item.image_url || 'https://picsum.photos/400/300'}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent p-6 flex flex-col justify-end z-10">
@@ -481,10 +483,8 @@
         function goHome(pushState = true) {
             if (pushState) {
                 try {
-                    // 回首頁時清空 hash
                     window.history.pushState(null, '', window.location.pathname + window.location.search);
                 } catch(e) {
-                    // 備案
                     history.replaceState(null, null, ' ');
                 }
             }
@@ -493,7 +493,6 @@
             window.scrollTo({ top: scrollPosBeforeDetail, behavior: 'auto' });
         }
 
-        // 監聽上一頁功能 (監聽 Hash 改變)
         window.addEventListener('popstate', () => {
             const hash = window.location.hash;
             if (hash && hash.startsWith('#id=')) {
