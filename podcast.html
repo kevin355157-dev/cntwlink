@@ -83,7 +83,25 @@
         </div>
         <button class="md:hidden text-4xl" onclick="toggleMenu()"><iconify-icon  icon="lucide:menu"></iconify-icon></button>
     </nav>
-    </header>
+    
+    <!-- 跑馬燈已移至此處 -->
+    <div class="marquee-container relative z-10 border-b border-black/20">
+        <div class="marquee-content">
+            <span>兩岸新聞網 CHINA-TAIWAN LINK</span>
+            <span>PODCAST 兩岸01</span>
+            <span>合體吧!台灣</span>
+            <span>兩岸新聞網 CHINA-TAIWAN LINK</span>
+            <span>PODCAST 兩岸01</span>
+            <span>合體吧!台灣</span>
+            <span>兩岸新聞網 CHINA-TAIWAN LINK</span>
+            <span>PODCAST 兩岸01</span>
+            <span>合體吧!台灣</span>
+            <span>兩岸新聞網 CHINA-TAIWAN LINK</span>
+            <span>PODCAST 兩岸01</span>
+            <span>合體吧!台灣</span>
+        </div>
+    </div>
+</header>
 
 <div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
     <button class="absolute top-6 right-6 text-4xl text-white hover:text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">
@@ -104,7 +122,8 @@
 
     <div id="main-wrap" class="relative z-10 transition-opacity duration-500">
         
-        <div class="bg-grid min-h-screen pt-28 pb-10">
+        <!-- 增加 pt 值以適應 header 加入跑馬燈後增加的高度 -->
+        <div class="bg-grid min-h-screen pt-36 md:pt-40 pb-10">
             
             <div class="px-6 max-w-7xl mx-auto mb-16">
                 
@@ -150,13 +169,13 @@
                             <div class="glass-card p-8 rounded-xl flex flex-col sm:flex-row gap-8 h-full relative overflow-hidden group items-start">
                                 <div class="absolute top-0 right-0 w-40 h-40 bg-[var(--royal-blue)] opacity-20 rounded-bl-full transition-all duration-500 group-hover:scale-150 group-hover:opacity-30"></div>
                                 <div class="w-32 h-32 sm:w-48 sm:h-48 flex-shrink-0 relative z-10 rounded-xl overflow-hidden shadow-2xl border border-white/20 group-hover:border-white transition-colors">
-                                    <img src="https://hackmd.io/_uploads/S1ryIIsyzg.jpg" alt="戰略雷達 節目封面" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    <img src="https://hackmd.io/_uploads/S1ryIIsyzg.jpg" alt="合體吧!台灣 節目封面" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                                 </div>
                                 <div class="flex flex-col z-10 flex-grow h-full">
-                                    <span class="text-gray-400 font-black tracking-widest text-sm mb-1">軍事科技</span>
-                                    <h4 class="text-3xl sm:text-4xl font-black italic mb-4">戰略雷達</h4>
+                                    <span class="text-gray-400 font-black tracking-widest text-sm mb-1">在地生活</span>
+                                    <h4 class="text-3xl sm:text-4xl font-black italic mb-4">合體吧!台灣</h4>
                                     <p class="text-gray-300 leading-relaxed font-medium mb-6 flex-grow text-sm sm:text-base">
-                                        鎖定全球最新軍武科技與防衛動態。無論是 M142 海馬斯多管火箭系統的戰術價值，還是台海 J-6 無人機的佈署分析，本節目將帶給軍事迷最硬核的兵推與裝備探討。
+                                        從兩岸文化衝擊到在地生活體驗，結合不同背景的多元視角，帶給您最真實的社會脈動觀察。沒有嚴肅的說教，只有最接地氣的閒話家常與犀利觀點，讓我們一起在台灣碰撞出新的火花！
                                     </p>
                                     <div class="flex gap-4">
                                         <button class="bg-white text-black px-6 py-2 rounded-full font-black text-xs sm:text-sm tracking-widest hover:scale-105 transition-transform">立即收聽</button>
@@ -172,46 +191,22 @@
                             <h3 class="text-3xl font-black italic uppercase tracking-tighter">合體者 / HOSTS</h3>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div class="glass-card rounded-xl relative overflow-hidden group host-card h-[450px] shadow-2xl reveal">
-                                <img src="https://hackmd.io/_uploads/r1OjmQklzg.jpg" alt="Host T-Rex" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                <div class="absolute top-4 right-4 bg-[var(--neon-lime)] text-black w-10 h-10 rounded-full flex items-center justify-center font-black text-xl z-10 shadow-lg border border-black/20">
+                        <div class="grid grid-cols-1 gap-8">
+                            <div class="glass-card rounded-xl relative overflow-hidden group host-card shadow-2xl reveal h-[450px] flex flex-col justify-end p-8 md:p-12">
+                                <div class="absolute inset-0 w-full h-full bg-[url('https://hackmd.io/_uploads/rkoIRCFxMx.png')] bg-cover bg-center group-hover:scale-105 transition-transform duration-700 z-0"></div>
+                                
+                                <div class="absolute top-4 right-4 bg-[var(--neon-lime)] text-black w-10 h-10 rounded-full flex items-center justify-center font-black text-xl z-20 shadow-lg border border-black/20">
                                     <iconify-icon icon="lucide:mic"></iconify-icon>
                                 </div>
-                                <div class="absolute bottom-0 left-0 w-full p-6 pt-20 bg-gradient-to-t from-black via-black/80 to-transparent z-10 text-left">
-                                    <span class="text-[var(--neon-lime)] font-bold tracking-widest text-xs uppercase mb-1 block">經營管理/兩岸生活</span>
-                                    <h4 class="text-3xl font-black italic mb-3 text-white drop-shadow">林德隆Delong</h4>
-                                    <p class="text-sm text-gray-200 leading-relaxed max-w-sm">
-                                        台灣藝術大學碩士，多媒體專業，女友廣州人-曉魚，兩岸文化差異生活常有聊不完的話題，但兩岸政策似乎成了兩岸婚姻的隱患。
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="glass-card rounded-xl relative overflow-hidden group host-card h-[450px] shadow-2xl reveal">
-                                <img src="https://hackmd.io/_uploads/Hkl66z1xGg.jpg" alt="Host Kevin" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                <div class="absolute top-4 right-4 bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-black text-xl z-10 shadow-lg border border-black/20">
-                                    <iconify-icon icon="lucide:crosshair"></iconify-icon>
-                                </div>
-                                <div class="absolute bottom-0 left-0 w-full p-6 pt-20 bg-gradient-to-t from-black via-black/80 to-transparent z-10 text-left">
-                                    <span class="text-white font-bold tracking-widest text-xs uppercase mb-1 block opacity-80">美甲師/孩子的媽
-                                    <h4 class="text-3xl font-black italic mb-3 text-white drop-shadow">Money</h4>
-                                    <p class="text-sm text-gray-200 leading-relaxed max-w-sm">
-                                        我誰都不愛但我愛錢。
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="glass-card rounded-xl relative overflow-hidden group host-card h-[450px] shadow-2xl reveal">
-                                <img src="https://hackmd.io/_uploads/SJ9npfJxGx.jpg" alt="Mascot Owl" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                <div class="absolute top-4 right-4 bg-[var(--royal-blue)] text-white w-10 h-10 rounded-full flex items-center justify-center font-black text-xl z-10 shadow-lg border border-white/10">
-                                    <iconify-icon icon="lucide:palette"></iconify-icon>
-                                </div>
-                                <div class="absolute bottom-0 left-0 w-full p-6 pt-20 bg-gradient-to-t from-black via-black/80 to-transparent z-10 text-left">
-                                    <span class="text-[var(--royal-blue)] font-bold tracking-widest text-xs uppercase mb-1 block">顏職擔當 / 經濟專家</span>
-                                    <h4 class="text-3xl font-black italic mb-3 text-white drop-shadow">Andy</h4>
-                                    <p class="text-sm text-gray-200 leading-relaxed max-w-sm">
-                                        俗稱海量知識庫，瞧不起所有人。
-                                    </p>
+                                
+                                <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div class="glass-card bg-black/5 p-6 rounded-xl border border-white/20 shadow-lg">
+                                        <span class="text-[var(--neon-lime)] font-bold tracking-widest text-xs uppercase mb-1 block">經營管理/兩岸生活</span>
+                                        <h4 class="text-3xl font-black italic mb-3 text-white">林德隆Delong</h6>
+                                        <p class="text-sm text-gray-200 leading-relaxed">
+                                            台灣藝術大學碩士，多媒體專業，女友廣州人-曉魚，兩岸文化差異生活常有聊不完的話題，但兩岸政策似乎成了兩岸婚姻的隱患。
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -246,7 +241,7 @@
         </div>
     </div>
 
-    <div id="detail-view" class="hidden bg-grid relative z-20 min-h-screen pt-32 md:pt-40 px-6 pb-24">
+    <div id="detail-view" class="hidden bg-grid relative z-20 min-h-screen pt-40 md:pt-48 px-6 pb-24">
         <div class="max-w-4xl mx-auto">
             <button onclick="goHome(true)" class="flex items-center gap-2 text-[var(--neon-lime)] hover:text-white transition-all mb-10 font-black tracking-widest text-sm uppercase bg-black/40 px-5 py-2 rounded-full border border-[var(--neon-lime)]/30 hover:bg-[var(--neon-lime)] hover:text-black w-max shadow-lg">
                 <iconify-icon icon="lucide:arrow-left"></iconify-icon> 返回節目列表
@@ -300,7 +295,6 @@
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('translate-x-full'); }
 
         // ================= 獨立大 BANNER 資料 =================
-        // 只有保留兩張
         const HERO_DATA = [
             {
                 category: "兩岸01",
@@ -309,9 +303,9 @@
                 link: "#"
             },
             {
-                category: "戰略雷達",
-                title: "M142海馬斯多管火箭系統：不對稱作戰的戰術價值",
-                image_url: "https://hackmd.io/_uploads/BkCn9fyxGx.jpg0",
+                category: "合體吧!台灣",
+                title: "兩岸文化碰撞：最真實的在地生活觀點",
+                image_url: "https://hackmd.io/_uploads/BkCn9fyxGx.jpg",
                 link: "#"
             }
         ];
