@@ -547,53 +547,103 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
         
         :root { 
-            --neon-lime: #CCFF00; 
+            --neon-lime: #5579e9; 
             --royal-blue: #5579e9; 
+            --editor-blue: #5579e9;
+            --paper-white: #ffffff;
+            --ink-black: #111111;
+            --line-gray: rgba(0,0,0,0.14);
+            --serif-title: "Noto Serif TC", "Songti TC", "PMingLiU", "MingLiU", serif;
             --deep-black: #050505; 
-            --dark-gray-glass: rgba(18, 18, 18, 0.95); 
+            --dark-gray-glass: rgba(255, 255, 255, 0.98); 
         }
         
         body { 
-            background-color: var(--royal-blue); 
-            color: white; 
+            background-color: var(--paper-white); 
+            color: var(--ink-black); 
             font-family: 'Noto Sans TC', sans-serif; 
             overflow-x: hidden; 
             -webkit-tap-highlight-color: transparent; 
         }
         
-        .bg-grid { background-image: linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.12) 1px, transparent 1px); background-size: 20px 20px; }
-        
-        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); }
-        #flashlight { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(204,255,0,0.1) 0%, rgba(204,255,0,0) 70%); border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%); display: none; }
-        #cursor { position: fixed; width: 10px; height: 10px; background: var(--neon-lime); border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; display: none; }
+        .bg-grid { background: var(--paper-white); }
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); }
+        #flashlight { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(85,121,233,0.1) 0%, rgba(85,121,233,0) 70%); border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%); display: none; }
+        #cursor { position: fixed; width: 10px; height: 10px; background: var(--editor-blue); border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; display: none; }
         @media (pointer: fine) { #flashlight, #cursor { display: block; } }
         
-        .glass-nav { background: var(--dark-gray-glass); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .glass-card { background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; transition: all 0.3s ease; }
-        .glass-card:hover { border-color: var(--neon-lime); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .reveal { opacity: 0; transform: translateY(30px); }
+        .glass-nav,
+        .site-header-paper { background: var(--paper-white); color: var(--ink-black); border-bottom: 1px solid var(--line-gray); box-shadow: none; }
+        .site-header-paper a, .site-header-paper button { color: var(--ink-black); }
+        .site-header-paper a:hover, .site-header-paper button:hover { color: var(--editor-blue); }
+        .site-header-actions { white-space: nowrap; }
+        .site-header-actions a { white-space: nowrap; }
+        .site-brand-dot { background: var(--editor-blue); }
+        .site-outline-action { border: 1px solid var(--editor-blue); color: var(--editor-blue) !important; border-radius: 999px; padding: 0.375rem 1.25rem; }
+        .site-outline-action:hover { background: var(--editor-blue); color: white !important; }
+        .site-lang-button { border: 1px solid rgba(0,0,0,0.25); border-radius: 999px; padding: 0.375rem 0.75rem; }
+        .site-lang-button:hover { border-color: var(--editor-blue); color: var(--editor-blue); }
+        .site-header-search { width: 220px; position: relative; }
+        .site-header-search input { width: 100%; border: 1px solid rgba(0,0,0,0.18); color: var(--ink-black); padding: 0.48rem 2.45rem 0.48rem 0.85rem; font-size: 0.82rem; font-weight: 800; outline: none; }
+        .site-header-search input:focus { border-color: var(--editor-blue); }
+        .site-header-search button { position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%); color: rgba(0,0,0,0.45); }
 
-        .marquee-container { width: 100%; overflow: hidden; background-color: var(--neon-lime); color: var(--deep-black); display: flex; align-items: center; padding: 6px 0; }
+        .marquee-container { width: 100%; overflow: hidden; background-color: var(--editor-blue); color: white; display: flex; align-items: center; padding: 6px 0; }
         .marquee-content { display: flex; white-space: nowrap; animation: scroll-marquee 25s linear infinite; }
         .marquee-content span { padding-right: 50px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.1em; }
         @keyframes scroll-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%); z-index: 50;
-            width: 40px; height: 40px; background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.2rem; transition: all 0.3s; opacity: 0; pointer-events: none;
-        }
-        @media (min-width: 768px) {
-            .nav-btn { width: 50px; height: 50px; font-size: 1.5rem; }
-        }
-        .group:hover .nav-btn { opacity: 1; pointer-events: auto; }
-        .nav-btn:hover { background: var(--neon-lime); color: black; border-color: var(--neon-lime); box-shadow: 0 0 20px rgba(204, 255, 0, 0.4); }
+        main, #main-wrap { background: var(--paper-white); color: var(--ink-black); }
+        main .text-white, main .text-gray-200, main .text-gray-300, main .text-gray-400, #main-wrap .text-gray-200, #main-wrap .text-gray-300, #main-wrap .text-gray-400 { color: #555 !important; }
+        #main-wrap .host-name { color: white !important; }
+        #main-wrap .host-bio-copy { color: white !important; }
+        #col-grid-small .episode-card-title { color: white !important; }
+        #col-grid-small .episode-card-category { color: white !important; border-color: rgba(255,255,255,0.85) !important; }
+        #main-wrap .podcast-listen-link { color: white !important; }
+        .detail-back-button { border: 2px solid var(--editor-blue) !important; box-shadow: 0 8px 18px rgba(85,121,233,0.16); }
+        main .text-\[var\(--neon-lime\)\], #main-wrap .text-\[var\(--neon-lime\)\] { color: var(--editor-blue) !important; }
+        main .bg-\[var\(--neon-lime\)\], #main-wrap .bg-\[var\(--neon-lime\)\] { background-color: var(--editor-blue) !important; }
+        main .border-\[var\(--neon-lime\)\], #main-wrap .border-\[var\(--neon-lime\)\] { border-color: var(--editor-blue) !important; }
+        main h1, main h2, main h3, main h4, #main-wrap h1, #main-wrap h2, #main-wrap h3, #main-wrap h4 { color: var(--ink-black); }
 
-        /* 文章內容樣式 */
+        #mobile-menu { color: white; }
+        #mobile-menu a, #mobile-menu button { color: inherit; }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .about-card,
+        .collab-card,
+        .glass-card { background: #fff; color: var(--ink-black); border: 1px solid var(--line-gray); box-shadow: none; overflow: hidden; transition: all 0.3s ease; }
+        .about-card:hover,
+        .collab-card:hover,
+        .glass-card:hover { border-color: var(--editor-blue); box-shadow: 0 10px 30px rgba(85,121,233,0.08); transform: translateY(-4px); }
+
+        .hero-image-frame { position: relative; background: #f4f4f4; padding: 10px; border: 1px solid var(--line-gray); box-shadow: none; transform: none; }
+        .tag { border: 1px solid rgba(85,121,233,0.3); padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 700; color: var(--editor-blue); transition: all 0.3s; background: rgba(85,121,233,0.06); }
+        .tag:hover { background: var(--editor-blue); color: white; transform: scale(1.05); }
+        .slogan-highlight { color: var(--editor-blue); opacity: 1; }
+        .stat-box { border-left: 2px solid var(--editor-blue); padding-left: 1.5rem; }
+        .avatar-glow { position: relative; }
+        .avatar-glow::after { content: ''; position: absolute; inset: -2px; background: var(--editor-blue); opacity: 0; transition: opacity 0.3s; z-index: -1; border-radius: 0.75rem; }
+        .collab-card:hover .avatar-glow::after { opacity: 0.18; }
+        .skeleton { background: linear-gradient(90deg, #eeeeee 25%, #f8f8f8 50%, #eeeeee 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        .form-input { width: 100%; background: #fff; border: 1px solid var(--line-gray); padding: 1rem 1.25rem; border-radius: 0.5rem; color: var(--ink-black); font-size: 0.95rem; transition: all 0.3s ease; }
+        .form-input:focus { outline: none; border-color: var(--editor-blue); box-shadow: 0 0 0 3px rgba(85,121,233,0.12); }
+        .form-input::placeholder { color: rgba(0, 0, 0, 0.4); }
+        .btn-submit { background: var(--editor-blue); color: white; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; padding: 1rem 2rem; border-radius: 999px; transition: all 0.3s; border: 2px solid var(--editor-blue); width: 100%; }
+        .btn-submit:hover { background: white; color: var(--editor-blue); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(85,121,233,0.15); }
+
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 50; width: 50px; height: 50px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; transition: all 0.3s; opacity: 0; pointer-events: none; }
+        .group:hover .nav-btn { opacity: 1; pointer-events: auto; }
+        .nav-btn:hover { background: var(--editor-blue); color: white; border-color: var(--editor-blue); box-shadow: 0 0 20px rgba(85, 121, 233, 0.35); }
+        .article-content { font-size: 1.125rem; line-height: 2; opacity: 0.9; color: #333; }
+        #detail-content, #detail-content p, #detail-content li, #detail-content span { color: var(--ink-black) !important; }
         .article-content p { margin-bottom: 1.5rem; line-height: 1.8; }
-        .article-content h3 { font-size: 1.5rem; font-weight: 900; color: white; margin-top: 2rem; margin-bottom: 1rem; border-left: 4px solid var(--neon-lime); padding-left: 1rem; }
+        .article-content h3 { font-size: 1.5rem; font-weight: 900; color: var(--ink-black); margin-top: 2rem; margin-bottom: 1rem; border-left: 4px solid var(--editor-blue); padding-left: 1rem; }
+
+        footer.glass-nav { background: var(--paper-white); color: var(--ink-black); border-top: 1px solid var(--line-gray); }
+        footer .text-white { color: var(--ink-black) !important; }
     </style>
 </head>
 <body>
@@ -601,48 +651,46 @@
     <div id="flashlight"></div>
     <div id="cursor"></div>
 
-<header class="fixed top-0 w-full z-[200]">
-    <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center glass-nav">
-        <a href="index.html" class="flex items-center gap-3">
-            <div class="w-3 h-3 bg-[var(--neon-lime)] rounded-full"></div>
-            <span class="text-2xl md:text-3xl font-black tracking-tighter italic uppercase">兩岸新聞網 | China-Taiwan Link</span>
-        </a>
-        <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-[0.2em] uppercase">
-            <a href="podcast.html" class="text-[var(--neon-lime)] transition-all">PODCAST</a>
-            <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-all">合體者</a>
-            <a href="about.html" class="hover:text-[var(--neon-lime)] transition-all">關於我們</a>
-            <a href="contact.html" class="border border-[var(--neon-lime)] px-5 py-1.5 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black">聯絡我們</a>
-            <button type="button" data-lang-toggle class="border border-white/30 px-3 py-1.5 rounded-full hover:border-[var(--neon-lime)] hover:text-[var(--neon-lime)] transition-all font-black">简</button>
+    <header class="fixed top-0 w-full z-[200]">
+        <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center site-header-paper">
+            <a href="index.html" onclick="goHome(true)" class="flex items-center gap-3">
+                <img src="https://hackmd.io/_uploads/Hki2gT8MMl.png" alt="兩岸直航CTL" class="h-12 md:h-14 w-auto object-contain">
+            </a>
+            <div class="hidden lg:block text-sm font-bold text-gray-600">深度評論 × 跨域觀察 × 兩岸視角</div>
+            <div class="site-header-actions hidden md:flex items-center gap-5 text-sm font-bold uppercase">
+                <div class="site-header-search">
+                    <input type="text" id="main-search-input" placeholder="搜尋專欄...">
+                    <button onclick="handleMainSearch()" aria-label="搜尋">
+                        <iconify-icon icon="lucide:search" class="text-xl"></iconify-icon>
+                    </button>
+                </div>
+                <a href="podcast.html" class="transition-all">PODCAST</a>
+                <a href="Collaborators.html" class="transition-all">合體者</a>
+                <a href="about.html" class="transition-all">關於我們</a>
+                <a href="contact.html" class="site-outline-action transition-all font-black">聯絡我們</a>
+                <button type="button" data-lang-toggle class="site-lang-button transition-all font-black">简</button>
+            </div>
+            <button class="md:hidden text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:menu"></iconify-icon></button>
+        </nav>
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>兩岸新聞網專注深度評論兩岸時事，由獨立學者以跨域視角還原真實脈絡 | 拆解隔閡，思想直航；兩岸合體，共譜新章。帶您消弭偏見，重構多維度的思考骨架。</span>
+                <span>【快訊】兩岸關係新突破，經貿論壇於上海登場。／【快訊】台積電法說會優於預期，帶動台股科技板塊全面翻紅。</span>
+            </div>
         </div>
-        <button class="md:hidden text-4xl" onclick="toggleMenu()"><iconify-icon  icon="lucide:menu"></iconify-icon></button>
-    </nav>
-    
-    <!-- 跑馬燈已移至此處 -->
-    <div class="marquee-container relative z-10 border-b border-black/20">
-        <div class="marquee-content">
-            <span>兩岸新聞網專注深度評論兩岸時事，由獨立學者以跨域視角還原真實脈絡 | 拆解隔閡，思想直航；兩岸合體，共譜新章。帶您消弭偏見，重構多維度的思考骨架。</span>
-            <span>【快訊】兩岸關係新突破，經貿論壇於上海登場。／【快訊】台積電法說會優於預期，帶動台股科技板塊全面翻紅。</span>
-        </div>
-    </div>
-</header>
+    </header>
 
-<div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
-    <button class="absolute top-6 right-6 text-4xl text-white hover:text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">
-        <iconify-icon icon="lucide:x"></iconify-icon>
-    </button>
-    
-    <div class="flex flex-col gap-10 text-center text-3xl font-black italic items-center tracking-wider text-white">
-        <a href="index.html" class="hover:text-[var(--neon-lime)] transition-colors">首頁HOME</a>
-        <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-colors">PODCAST</a>
-        <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-colors">合體者</a>
-        <a href="about.html" class="hover:text-[var(--neon-lime)] transition-colors">ABOUT</a>
-        
-        <a href="contact.html" class="text-[var(--neon-lime)] border border-[var(--neon-lime)] px-10 py-3 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-bold not-italic mt-4 text-2xl tracking-widest">
-            聯絡我們
-        </a>
-        <button type="button" data-lang-toggle class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] w-20 h-20 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic text-2xl">简</button>
+    <div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
+        <button class="absolute top-6 right-6 text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:x"></iconify-icon></button>
+        <div class="flex flex-col gap-8 text-center text-3xl font-black italic items-center">
+            <a href="index.html" onclick="toggleMenu(); goHome(true)" class="hover:text-[var(--neon-lime)] transition-colors">首頁HOME</a>
+            <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-colors">PODCAST</a>
+            <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-colors">合體者</a>
+            <a href="about.html" class="hover:text-[var(--neon-lime)] transition-colors">ABOUT</a>
+            <a href="contact.html" class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] px-10 py-3 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic mt-2 text-2xl tracking-[0.1em]">聯絡我們</a>
+            <button type="button" data-lang-toggle class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] w-20 h-20 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic text-2xl">简</button>
+        </div>
     </div>
-</div>
 
     <div id="main-wrap" class="relative z-10 transition-opacity duration-500">
         
@@ -651,11 +699,11 @@
             
             <div class="px-6 max-w-7xl mx-auto mb-16">
                 
-                <div class="flex justify-center mb-8">
-                    <img src="https://hackmd.io/_uploads/r1SfFQ1eGe.png" alt="REUNION TV LOGO" class="h-16 md:h-24 w-auto object-contain">
+                <div class="flex justify-center mb-4">
+                    <div class="h-4 md:h-6" aria-hidden="true"></div>
                 </div>
 
-                <div id="hero-slider-wrap" class="w-full aspect-video relative group z-10 rounded-2xl overflow-hidden border border-[var(--neon-lime)]/30 shadow-[0_0_40px_rgba(204,255,0,0.1)]"></div>
+                <div id="hero-slider-wrap" class="w-full aspect-video relative group z-10 rounded-sm overflow-hidden border border-[var(--neon-lime)]/30 shadow-[0_0_40px_rgba(85,121,233,0.1)]"></div>
             </div>
 
             <section class="px-6">
@@ -685,7 +733,7 @@
                                         帶您穿透資訊迷霧，深度解析地緣政治、區域安全與政經脈動。從東協、中國與中東的三角關係，到第一島鏈的戰略防禦，我們提供最犀利的美式觀點與超鮮明的立場解析。
                                     </p>
                                     <div class="flex gap-4">
-                                        <a href="https://podcasts.apple.com/tw/podcast/%E5%85%A9%E5%B2%B801-%E8%BC%95%E9%AC%86%E8%81%BD%E5%85%A9%E5%B2%B8%E6%96%B0%E8%81%9E-news/id1887752048" target="_blank" rel="noopener noreferrer" class="bg-[var(--neon-lime)] text-black px-6 py-2 rounded-full font-black text-xs sm:text-sm tracking-widest hover:scale-105 transition-transform">立即收聽</a>
+                                        <a href="https://podcasts.apple.com/tw/podcast/%E5%85%A9%E5%B2%B801-%E8%BC%95%E9%AC%86%E8%81%BD%E5%85%A9%E5%B2%B8%E6%96%B0%E8%81%9E-news/id1887752048" target="_blank" rel="noopener noreferrer" class="podcast-listen-link bg-[var(--neon-lime)] text-black px-6 py-2 rounded-full font-black text-xs sm:text-sm tracking-widest hover:scale-105 transition-transform">立即收聽</a>
                                     </div>
                                 </div>
                             </div>
@@ -726,8 +774,8 @@
                                 <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div class="glass-card bg-black/5 p-6 rounded-xl border border-white/20 shadow-lg">
                                         <span class="text-[var(--neon-lime)] font-bold tracking-widest text-xs uppercase mb-1 block">經營管理/兩岸生活</span>
-                                        <h4 class="text-3xl font-black italic mb-3 text-white">林德隆Delong</h6>
-                                        <p class="text-sm text-gray-200 leading-relaxed">
+                                        <h4 class="host-name text-3xl font-black italic mb-3 text-white">林德隆Delong</h6>
+                                        <p class="host-bio-copy text-sm text-gray-200 leading-relaxed">
                                             台灣藝術大學學士，多媒體工作者與獨立內容製作人。研究領域聚焦於兩岸和平關係、共同發展策略及地緣政治衝突，長期關注區域安全、社會認同與兩岸交流議題。善於運用影像敘事、深度訪談及新媒體傳播方法，結合理論分析與田野觀察，探討兩岸互動對社會、文化及區域發展之影響。
                                         </p>
                                     </div>
@@ -744,7 +792,7 @@
                             </div>
                             
                             <div class="relative w-full sm:w-64 group/search z-20">
-                                <input type="text" id="ep-search-input" placeholder="搜尋集數..." class="w-full bg-black/40 border border-white/20 text-white px-5 py-2.5 rounded-full focus:outline-none focus:border-[var(--neon-lime)] transition-all text-sm font-bold italic">
+                                <input type="text" id="ep-search-input" placeholder="搜尋集數..." class="w-full bg-white border border-black/20 text-black px-5 py-2.5 rounded-full focus:outline-none focus:border-[var(--neon-lime)] transition-all text-sm font-bold italic">
                                 <button onclick="handleEpSearch()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 group-hover/search:text-[var(--neon-lime)] transition-colors">
                                     <iconify-icon icon="lucide:search" class="text-xl"></iconify-icon>
                                 </button>
@@ -754,7 +802,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="col-grid-small"></div>
                         
                         <div class="mt-16 flex justify-center">
-                            <button id="load-more-btn" onclick="loadMoreEps()" class="border-2 border-[var(--neon-lime)] text-[var(--neon-lime)] px-10 py-3 rounded-full font-black text-sm tracking-widest hover:bg-[var(--neon-lime)] hover:text-black transition-all hover:scale-105 shadow-[0_0_15px_rgba(204,255,0,0.2)] hover:shadow-[0_0_25px_rgba(204,255,0,0.5)]">
+                            <button id="load-more-btn" onclick="loadMoreEps()" class="border-2 border-[var(--neon-lime)] text-[var(--neon-lime)] px-10 py-3 rounded-full font-black text-sm tracking-widest hover:bg-[var(--neon-lime)] hover:text-white transition-all hover:scale-105 shadow-[0_0_15px_rgba(85,121,233,0.2)] hover:shadow-[0_0_25px_rgba(85,121,233,0.35)]">
                                 載入更多 / LOAD MORE
                             </button>
                         </div>
@@ -767,7 +815,7 @@
 
     <div id="detail-view" class="hidden bg-grid relative z-20 min-h-screen pt-40 md:pt-48 px-6 pb-24">
         <div class="max-w-4xl mx-auto">
-            <button onclick="goHome(true)" class="flex items-center gap-2 text-[var(--neon-lime)] hover:text-white transition-all mb-10 font-black tracking-widest text-sm uppercase bg-black/40 px-5 py-2 rounded-full border border-[var(--neon-lime)]/30 hover:bg-[var(--neon-lime)] hover:text-black w-max shadow-lg">
+            <button onclick="goHome(true)" class="detail-back-button flex items-center gap-2 text-[var(--neon-lime)] transition-all mb-10 font-black tracking-widest text-sm uppercase bg-white px-5 py-2 rounded-full border border-[var(--neon-lime)]/30 hover:bg-[var(--neon-lime)] hover:text-white w-max shadow-none">
                 <iconify-icon icon="lucide:arrow-left"></iconify-icon> 返回節目列表
             </button>
             
@@ -783,7 +831,7 @@
                     </div>
                 </div>
 
-                <div class="mb-12 w-full rounded-xl overflow-hidden shadow-[0_0_30px_rgba(204,255,0,0.05)] border border-[var(--neon-lime)]/30">
+                <div class="mb-12 w-full rounded-sm overflow-hidden shadow-[0_0_30px_rgba(85,121,233,0.05)] border border-[var(--neon-lime)]/30">
                     <iframe 
                         id="detail-podcast-iframe"
                         allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" 
@@ -818,6 +866,16 @@
 
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('translate-x-full'); }
 
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        function handleMainSearch() {
+            const input = document.getElementById('main-search-input');
+            const query = input ? input.value.trim() : '';
+            window.location.href = query ? 'index.html?search=' + encodeURIComponent(query) : 'index.html';
+        }
+
         // ================= 獨立大 BANNER 資料 =================
         const HERO_DATA = [
             {
@@ -825,7 +883,8 @@
                 title: "東協、中國與中東的三角戰略關係解析",
                 image_url: "https://hackmd.io/_uploads/S1ZUczJgze.jpg",
                 link: "#"
-            },
+            }
+,
             {
                 category: "合體吧!台灣",
                 title: "兩岸文化碰撞：最真實的在地生活觀點",
@@ -990,12 +1049,12 @@
                     <img src="${img}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent p-8 flex flex-col justify-end z-10">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-[var(--neon-lime)] font-black text-[10px] tracking-widest uppercase border border-[var(--neon-lime)] px-2 py-0.5 rounded-sm">${item.category || 'Podcast'}</span>
+                            <span class="episode-card-category text-[var(--neon-lime)] font-black text-[10px] tracking-widest uppercase border border-[var(--neon-lime)] px-2 py-0.5 rounded-sm">${item.category || 'Podcast'}</span>
                             <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[var(--neon-lime)] group-hover:text-black transition-colors">
                                 <iconify-icon icon="lucide:headphones"></iconify-icon>
                             </div>
                         </div>
-                        <h4 class="font-black text-xl group-hover:text-[var(--neon-lime)] transition-colors leading-tight line-clamp-2">${item.title}</h4>
+                        <h4 class="episode-card-title font-black text-xl group-hover:text-[var(--neon-lime)] transition-colors leading-tight line-clamp-2">${item.title}</h4>
                         <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] opacity-60 font-bold">
                             <span>AIR DATE: ${dateStr}</span>
                             <span class="text-[var(--neon-lime)] group-hover:translate-x-1 transition-transform">LISTEN ➔</span>

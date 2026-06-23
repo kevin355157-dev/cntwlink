@@ -547,100 +547,122 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
         
         :root { 
-            --neon-lime: #CCFF00; 
+            --neon-lime: #5579e9; 
             --royal-blue: #5579e9; 
+            --editor-blue: #5579e9;
+            --paper-white: #ffffff;
+            --ink-black: #111111;
+            --line-gray: rgba(0,0,0,0.14);
+            --serif-title: "Noto Serif TC", "Songti TC", "PMingLiU", "MingLiU", serif;
             --deep-black: #050505; 
-            --dark-gray-glass: rgba(18, 18, 18, 0.95); 
+            --dark-gray-glass: rgba(255, 255, 255, 0.98); 
         }
         
         body { 
-            background-color: var(--royal-blue); 
-            color: white; 
+            background-color: var(--paper-white); 
+            color: var(--ink-black); 
             font-family: 'Noto Sans TC', sans-serif; 
             overflow-x: hidden; 
+            -webkit-tap-highlight-color: transparent; 
         }
         
-        .bg-grid { 
-            background-image: linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px); 
-            background-size: 30px 30px; 
-        }
+        .bg-grid { background: var(--paper-white); }
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); }
+        #flashlight { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(85,121,233,0.1) 0%, rgba(85,121,233,0) 70%); border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%); display: none; }
+        #cursor { position: fixed; width: 10px; height: 10px; background: var(--editor-blue); border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; display: none; }
+        @media (pointer: fine) { #flashlight, #cursor { display: block; } }
         
-        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); }
-        .glass-nav { background: var(--dark-gray-glass); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        
-        .about-card {
-            background: rgba(10, 10, 10, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .about-card:hover { border-color: var(--neon-lime); box-shadow: 0 10px 30px rgba(204, 255, 0, 0.05); }
+        .glass-nav,
+        .site-header-paper { background: var(--paper-white); color: var(--ink-black); border-bottom: 1px solid var(--line-gray); box-shadow: none; }
+        .site-header-paper a, .site-header-paper button { color: var(--ink-black); }
+        .site-header-paper a:hover, .site-header-paper button:hover { color: var(--editor-blue); }
+        .site-header-actions { white-space: nowrap; }
+        .site-header-actions a { white-space: nowrap; }
+        .site-brand-dot { background: var(--editor-blue); }
+        .site-outline-action { border: 1px solid var(--editor-blue); color: var(--editor-blue) !important; border-radius: 999px; padding: 0.375rem 1.25rem; }
+        .site-outline-action:hover { background: var(--editor-blue); color: white !important; }
+        .site-lang-button { border: 1px solid rgba(0,0,0,0.25); border-radius: 999px; padding: 0.375rem 0.75rem; }
+        .site-lang-button:hover { border-color: var(--editor-blue); color: var(--editor-blue); }
+        .site-header-search { width: 220px; position: relative; }
+        .site-header-search input { width: 100%; border: 1px solid rgba(0,0,0,0.18); color: var(--ink-black); padding: 0.48rem 2.45rem 0.48rem 0.85rem; font-size: 0.82rem; font-weight: 800; outline: none; }
+        .site-header-search input:focus { border-color: var(--editor-blue); }
+        .site-header-search button { position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%); color: rgba(0,0,0,0.45); }
 
-        .marquee-container { width: 100%; overflow: hidden; background-color: var(--neon-lime); color: var(--deep-black); display: flex; align-items: center; padding: 6px 0; }
-        .marquee-content { display: flex; white-space: nowrap; animation: scroll-marquee 30s linear infinite; }
+        .marquee-container { width: 100%; overflow: hidden; background-color: var(--editor-blue); color: white; display: flex; align-items: center; padding: 6px 0; }
+        .marquee-content { display: flex; white-space: nowrap; animation: scroll-marquee 25s linear infinite; }
         .marquee-content span { padding-right: 50px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.1em; }
         @keyframes scroll-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .reveal { opacity: 0; transform: translateY(40px); }
-        
-        .form-input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 1.25rem;
-            border-radius: 0.75rem;
-            color: white;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--neon-lime);
-            background: rgba(0, 0, 0, 0.8);
-            box-shadow: 0 0 15px rgba(204, 255, 0, 0.1);
-        }
-        .form-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        main, #main-wrap { background: var(--paper-white); color: var(--ink-black); }
+        main .text-white, main .text-gray-200, main .text-gray-300, main .text-gray-400, #main-wrap .text-gray-200, #main-wrap .text-gray-300, #main-wrap .text-gray-400 { color: #555 !important; }
+        main .text-\[var\(--neon-lime\)\], #main-wrap .text-\[var\(--neon-lime\)\] { color: var(--editor-blue) !important; }
+        main .bg-\[var\(--neon-lime\)\], #main-wrap .bg-\[var\(--neon-lime\)\] { background-color: var(--editor-blue) !important; }
+        main .border-\[var\(--neon-lime\)\], #main-wrap .border-\[var\(--neon-lime\)\] { border-color: var(--editor-blue) !important; }
+        main h1, main h2, main h3, main h4, #main-wrap h1, #main-wrap h2, #main-wrap h3, #main-wrap h4 { color: var(--ink-black); }
 
-        .btn-submit {
-            background: var(--neon-lime);
-            color: black;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 1rem 2rem;
-            border-radius: 99px;
-            transition: all 0.3s;
-            border: 2px solid var(--neon-lime);
-            width: 100%;
-        }
-        .btn-submit:hover {
-            background: transparent;
-            color: var(--neon-lime);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(204, 255, 0, 0.15);
-        }
+        #mobile-menu { color: white; }
+        #mobile-menu a, #mobile-menu button { color: inherit; }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .about-card,
+        .collab-card,
+        .glass-card { background: #fff; color: var(--ink-black); border: 1px solid var(--line-gray); box-shadow: none; overflow: hidden; transition: all 0.3s ease; }
+        .about-card:hover,
+        .collab-card:hover,
+        .glass-card:hover { border-color: var(--editor-blue); box-shadow: 0 10px 30px rgba(85,121,233,0.08); transform: translateY(-4px); }
+        .contact-form-card { border: 2px solid rgba(85,121,233,0.42); box-shadow: 0 14px 36px rgba(85,121,233,0.1); }
+
+        .hero-image-frame { position: relative; background: #f4f4f4; padding: 10px; border: 1px solid var(--line-gray); box-shadow: none; transform: none; }
+        .tag { border: 1px solid rgba(85,121,233,0.3); padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 700; color: var(--editor-blue); transition: all 0.3s; background: rgba(85,121,233,0.06); }
+        .tag:hover { background: var(--editor-blue); color: white; transform: scale(1.05); }
+        .slogan-highlight { color: var(--editor-blue); opacity: 1; }
+        .stat-box { border-left: 2px solid var(--editor-blue); padding-left: 1.5rem; }
+        .avatar-glow { position: relative; }
+        .avatar-glow::after { content: ''; position: absolute; inset: -2px; background: var(--editor-blue); opacity: 0; transition: opacity 0.3s; z-index: -1; border-radius: 0.75rem; }
+        .collab-card:hover .avatar-glow::after { opacity: 0.18; }
+        .skeleton { background: linear-gradient(90deg, #eeeeee 25%, #f8f8f8 50%, #eeeeee 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        .form-input { width: 100%; background: #fff; border: 1px solid var(--line-gray); padding: 1rem 1.25rem; border-radius: 0.5rem; color: var(--ink-black); font-size: 0.95rem; transition: all 0.3s ease; }
+        .form-input:focus { outline: none; border-color: var(--editor-blue); box-shadow: 0 0 0 3px rgba(85,121,233,0.12); }
+        .form-input::placeholder { color: rgba(0, 0, 0, 0.4); }
+        .btn-submit { background: var(--editor-blue); color: white; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; padding: 1rem 2rem; border-radius: 999px; transition: all 0.3s; border: 2px solid var(--editor-blue); width: 100%; }
+        .btn-submit:hover { background: white; color: var(--editor-blue); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(85,121,233,0.15); }
+
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 50; width: 50px; height: 50px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; transition: all 0.3s; opacity: 0; pointer-events: none; }
+        .group:hover .nav-btn { opacity: 1; pointer-events: auto; }
+        .nav-btn:hover { background: var(--editor-blue); color: white; border-color: var(--editor-blue); box-shadow: 0 0 20px rgba(85, 121, 233, 0.35); }
+        .article-content { font-size: 1.125rem; line-height: 2; opacity: 0.9; color: #333; }
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; }
+        .article-content h3 { font-size: 1.5rem; font-weight: 900; color: var(--ink-black); margin-top: 2rem; margin-bottom: 1rem; border-left: 4px solid var(--editor-blue); padding-left: 1rem; }
+
+        footer.glass-nav { background: var(--paper-white); color: var(--ink-black); border-top: 1px solid var(--line-gray); }
+        footer .text-white { color: var(--ink-black) !important; }
     </style>
 </head>
-<body class="bg-grid">
+<body>
     <div class="grain"></div>
 
     <header class="fixed top-0 w-full z-[200]">
-        <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center glass-nav">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="w-3 h-3 bg-[var(--neon-lime)] rounded-full"></div>
-                <span class="text-2xl md:text-3xl font-black tracking-tighter italic uppercase text-white">兩岸新聞網 | China-Taiwan Link</span>
+        <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center site-header-paper">
+            <a href="index.html" onclick="goHome(true)" class="flex items-center gap-3">
+                <img src="https://hackmd.io/_uploads/Hki2gT8MMl.png" alt="兩岸直航CTL" class="h-12 md:h-14 w-auto object-contain">
             </a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-[0.2em] uppercase">
-                <a href="podcast.html" class="text-white hover:text-[var(--neon-lime)] transition-all">PODCAST</a>
-                <a href="Collaborators.html" class="text-white hover:text-[var(--neon-lime)] transition-all">合體者</a>
-                <a href="about.html" class="text-white hover:text-[var(--neon-lime)] transition-all">關於我們</a>
-                <a href="contact.html" class="bg-[var(--neon-lime)] text-black border border-[var(--neon-lime)] px-5 py-1.5 rounded-full transition-all font-black">聯絡我們</a>
-                <button type="button" data-lang-toggle class="text-white border border-white/30 px-3 py-1.5 rounded-full hover:border-[var(--neon-lime)] hover:text-[var(--neon-lime)] transition-all font-black">简</button>
+            <div class="hidden lg:block text-sm font-bold text-gray-600">深度評論 × 跨域觀察 × 兩岸視角</div>
+            <div class="site-header-actions hidden md:flex items-center gap-5 text-sm font-bold uppercase">
+                <div class="site-header-search">
+                    <input type="text" id="main-search-input" placeholder="搜尋專欄...">
+                    <button onclick="handleMainSearch()" aria-label="搜尋">
+                        <iconify-icon icon="lucide:search" class="text-xl"></iconify-icon>
+                    </button>
+                </div>
+                <a href="podcast.html" class="transition-all">PODCAST</a>
+                <a href="Collaborators.html" class="transition-all">合體者</a>
+                <a href="about.html" class="transition-all">關於我們</a>
+                <a href="contact.html" class="site-outline-action transition-all font-black">聯絡我們</a>
+                <button type="button" data-lang-toggle class="site-lang-button transition-all font-black">简</button>
             </div>
-            <button class="md:hidden text-4xl text-white" onclick="toggleMenu()">
-                <iconify-icon icon="lucide:menu"></iconify-icon>
-            </button>
+            <button class="md:hidden text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:menu"></iconify-icon></button>
         </nav>
         <div class="marquee-container">
             <div class="marquee-content">
@@ -651,15 +673,13 @@
     </header>
 
     <div id="mobile-menu" class="fixed top-0 right-0 w-full h-full bg-[var(--deep-black)] z-[250] flex flex-col items-center justify-center translate-x-full transition-transform duration-500">
-        <button class="absolute top-6 right-6 text-4xl text-white hover:text-[var(--neon-lime)] transition-colors" onclick="toggleMenu()">
-            <iconify-icon icon="lucide:x"></iconify-icon>
-        </button>
-        <div class="flex flex-col gap-8 text-center text-3xl font-black italic items-center text-white">
-            <a href="index.html" class="hover:text-[var(--neon-lime)] transition-colors">首頁HOME</a>
+        <button class="absolute top-6 right-6 text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:x"></iconify-icon></button>
+        <div class="flex flex-col gap-8 text-center text-3xl font-black italic items-center">
+            <a href="index.html" onclick="toggleMenu(); goHome(true)" class="hover:text-[var(--neon-lime)] transition-colors">首頁HOME</a>
             <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-colors">PODCAST</a>
             <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-colors">合體者</a>
             <a href="about.html" class="hover:text-[var(--neon-lime)] transition-colors">ABOUT</a>
-            <a href="contact.html" class="bg-[var(--neon-lime)] text-black border-2 border-[var(--neon-lime)] px-10 py-3 rounded-full transition-all font-black not-italic mt-2 text-2xl tracking-[0.1em]">聯絡我們</a>
+            <a href="contact.html" class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] px-10 py-3 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic mt-2 text-2xl tracking-[0.1em]">聯絡我們</a>
             <button type="button" data-lang-toggle class="text-[var(--neon-lime)] border-2 border-[var(--neon-lime)] w-20 h-20 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black not-italic text-2xl">简</button>
         </div>
     </div>
@@ -723,7 +743,7 @@
                 </div>
 
                 <div class="lg:col-span-7 reveal" style="transition-delay: 0.2s;">
-                    <form action="https://formsubmit.co/pikalinderlong02@gmail.com" method="POST" class="about-card p-8 md:p-12 rounded-[2rem]">
+                    <form action="https://formsubmit.co/pikalinderlong02@gmail.com" method="POST" class="contact-form-card about-card p-8 md:p-12 rounded-[2rem]">
                         <input type="hidden" name="_subject" value="【REUNION·TW】來自網站的新聯絡訊息！">
                         <h3 class="text-2xl font-black italic mb-8 tracking-wide">
                             傳送訊息 <span class="text-[var(--neon-lime)]">/ SEND MESSAGE</span>
@@ -776,6 +796,17 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('translate-x-full');
         }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+
+        function handleMainSearch() {
+            const input = document.getElementById('main-search-input');
+            const query = input ? input.value.trim() : '';
+            window.location.href = query ? 'index.html?search=' + encodeURIComponent(query) : 'index.html';
+        }
+
 
         window.onload = () => {
             gsap.utils.toArray('.reveal').forEach((el) => {

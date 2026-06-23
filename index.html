@@ -8,7 +8,7 @@
 
     <meta name="description" content="兩岸新聞網專注深度評論兩岸時事，由獨立學者以跨域視角還原真實脈絡 | 拆解隔閡，思想直航；兩岸合體，共譜新章。帶您消弭偏見，重構多維度的思考骨架。">
     
-    <meta property="og:title" content="兩岸新聞網 | 兩岸直航CTL">
+    <meta property="og:title" content="兩岸新聞網 | China-Taiwan Link">
     <meta property="og:description" content="獨立觀察，跨域思維，重構兩岸新視界。">
     <meta property="og:image" content="https://hackmd.io/_uploads/rk1BYvjyMx.png">
     <meta property="og:type" content="website">
@@ -556,8 +556,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
         
         :root { 
-            --neon-lime: #CCFF00; 
+            --neon-lime: #5579e9; 
             --royal-blue: #5579e9; 
+            --editor-blue: #5579e9;
+            --paper-white: #ffffff;
+            --ink-black: #111111;
+            --line-gray: rgba(0,0,0,0.14);
+            --serif-title: "Noto Serif TC", "Songti TC", "PMingLiU", "MingLiU", serif;
             --deep-black: #050505; 
             --dark-gray-glass: rgba(18, 18, 18, 0.95); 
         }
@@ -570,15 +575,15 @@
             -webkit-tap-highlight-color: transparent; 
         }
         
-        .bg-grid { background-image: linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.12) 1px, transparent 1px); background-size: 20px 20px; }
+        .bg-grid { background-image: none; }
         
         .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); }
-        #flashlight { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(204,255,0,0.1) 0%, rgba(204,255,0,0) 70%); border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%); display: none; }
+        #flashlight { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(85,121,233,0.1) 0%, rgba(85,121,233,0) 70%); border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%); display: none; }
         #cursor { position: fixed; width: 10px; height: 10px; background: var(--neon-lime); border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; display: none; }
         @media (pointer: fine) { #flashlight, #cursor { display: block; } }
         
         .glass-nav { background: var(--dark-gray-glass); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .glass-card { background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; transition: all 0.3s ease; }
+        .glass-card { background: transparent; backdrop-filter: none; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; transition: all 0.3s ease; }
         .glass-card:hover { border-color: var(--neon-lime); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .reveal { opacity: 0; transform: translateY(30px); }
 
@@ -586,7 +591,7 @@
         .cat-text-btn.active { color: var(--neon-lime); opacity: 1; border-bottom: 2px solid var(--neon-lime); padding-bottom: 4px; }
         .cat-text-btn:not(.active):hover { color: var(--neon-lime); opacity: 0.8; }
 
-        .marquee-container { width: 100%; overflow: hidden; background-color: var(--neon-lime); color: var(--deep-black); display: flex; align-items: center; padding: 6px 0; }
+        .marquee-container { width: 100%; overflow: hidden; background-color: var(--editor-blue); color: white; display: flex; align-items: center; padding: 6px 0; }
         .marquee-content { display: flex; white-space: nowrap; animation: scroll-marquee 25s linear infinite; }
         .marquee-content span { padding-right: 50px; font-weight: 900; font-size: 0.85rem; letter-spacing: 0.1em; }
         @keyframes scroll-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -598,16 +603,140 @@
 
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%); z-index: 50;
-            width: 50px; height: 50px; background: rgba(0,0,0,0.6);
+            width: 50px; height: 50px; background: transparent;
             border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             color: white; font-size: 1.5rem; transition: all 0.3s; opacity: 0; pointer-events: none;
         }
         .group:hover .nav-btn { opacity: 1; pointer-events: auto; }
-        .nav-btn:hover { background: var(--neon-lime); color: black; border-color: var(--neon-lime); box-shadow: 0 0 20px rgba(204, 255, 0, 0.4); }
+        .nav-btn:hover { background: var(--editor-blue); color: white; border-color: var(--editor-blue); box-shadow: 0 0 20px rgba(85, 121, 233, 0.35); }
 
         .article-content { font-size: 1.125rem; line-height: 2; opacity: 0.9; color: #E5E5E5; }
         .article-content p { margin-bottom: 1.5rem; }
+        #detail-view { background: var(--paper-white); color: var(--ink-black); }
+        #detail-view article.glass-card { background: transparent; backdrop-filter: none; border: 0; box-shadow: none; border-radius: 0; }
+        #detail-view article.glass-card > .absolute:first-child { display: none; }
+        #detail-title { color: var(--ink-black); font-family: var(--serif-title); }
+        #detail-date, #detail-main-body, #detail-main-body .article-content { color: var(--ink-black); }
+        .detail-back-button { background: white !important; border: 2px solid var(--editor-blue) !important; color: var(--ink-black) !important; box-shadow: none; }
+        .detail-back-button:hover { background: white !important; color: var(--ink-black) !important; }
+
+        .site-header-paper { background: var(--paper-white); color: var(--ink-black); border-bottom: 1px solid var(--line-gray); box-shadow: none; }
+        .site-header-paper a, .site-header-paper button { color: var(--ink-black); }
+        .site-header-paper a:hover, .site-header-paper button:hover { color: var(--editor-blue); }
+        .site-header-actions { white-space: nowrap; }
+        .site-header-actions a { white-space: nowrap; }
+        .site-brand-dot { background: var(--editor-blue); }
+        .site-outline-action { border: 1px solid var(--editor-blue); color: var(--editor-blue) !important; border-radius: 999px; padding: 0.375rem 1.25rem; }
+        .site-outline-action:hover { background: var(--editor-blue); color: white !important; }
+        .site-lang-button { border: 1px solid rgba(0,0,0,0.25); border-radius: 999px; padding: 0.375rem 0.75rem; }
+        .site-lang-button:hover { border-color: var(--editor-blue); color: var(--editor-blue); }
+        .site-header-search { width: 220px; position: relative; }
+        .site-header-search input { width: 100%; border: 1px solid rgba(0,0,0,0.18); color: var(--ink-black); padding: 0.48rem 2.45rem 0.48rem 0.85rem; font-size: 0.82rem; font-weight: 800; outline: none; }
+        .site-header-search input:focus { border-color: var(--editor-blue); }
+        .site-header-search button { position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%); color: rgba(0,0,0,0.45); }
+
+        .reporter-shell { background: var(--paper-white); color: var(--ink-black); min-height: 100vh; }
+        .reporter-main-section { padding: 8.1rem 1.5rem 3.5rem; background: var(--paper-white); }
+        .reporter-category-nav { border-top: 1px solid var(--line-gray); border-bottom: 1px solid var(--line-gray); display: flex; align-items: center; gap: 2rem; padding: 1.05rem 0; margin-bottom: 2.6rem; overflow-x: auto; white-space: nowrap; }
+        .reporter-menu-mark { color: #666; font-size: 1.8rem; line-height: 1; flex: 0 0 auto; }
+        .reporter-category-nav .cat-text-btn { color: var(--ink-black); opacity: 0.82; font-size: 1rem; font-weight: 900; margin-right: 0; letter-spacing: 0; }
+        .reporter-category-nav .cat-text-btn.active { color: var(--editor-blue); border-bottom-color: var(--editor-blue); }
+        .reporter-category-nav .cat-text-btn:not(.active):hover { color: var(--editor-blue); opacity: 1; }
+        .reporter-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 3.5rem; gap: 2rem; align-items: start; }
+        .reporter-picks { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.7rem; margin-bottom: 4.8rem; }
+        .reporter-pick-card { color: var(--ink-black); cursor: pointer; display: block; }
+        .reporter-pick-card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; margin-bottom: 1rem; background: #e8e8e8; }
+        .reporter-category { color: var(--editor-blue); font-size: 0.76rem; font-weight: 900; line-height: 1.3; margin-bottom: 0.55rem; }
+        .reporter-pick-title { color: var(--ink-black); font-family: var(--serif-title); font-size: 1.05rem; font-weight: 900; line-height: 1.62; letter-spacing: 0; }
+        .reporter-pick-card:hover .reporter-pick-title, .reporter-feature-story:hover .reporter-feature-title { color: var(--editor-blue); }
+        .reporter-podcast-section { border-top: 1px solid var(--line-gray); border-bottom: 1px solid var(--line-gray); margin-top: 3.2rem; margin-bottom: 3.4rem; padding: 1.8rem 0; display: grid; grid-template-columns: 160px minmax(0, 1.35fr) minmax(260px, 0.85fr); gap: 2rem; align-items: stretch; }
+        .reporter-podcast-label { color: var(--editor-blue); font-size: 0.8rem; font-weight: 900; margin-bottom: 0.45rem; }
+        .reporter-podcast-heading { color: var(--ink-black); font-family: var(--serif-title); font-size: 2.2rem; font-weight: 900; line-height: 1.15; }
+        .reporter-podcast-shows { display: flex; flex-direction: column; gap: 1.3rem; }
+        .reporter-podcast-card { display: flex; gap: 1.2rem; align-items: flex-start; color: var(--ink-black); }
+        .reporter-podcast-card.secondary { border-top: 1px solid var(--line-gray); padding-top: 1.3rem; }
+        .reporter-podcast-card img { width: 112px; height: 112px; object-fit: cover; flex: 0 0 auto; }
+        .reporter-podcast-show-label { color: var(--editor-blue); font-size: 0.72rem; font-weight: 900; margin-bottom: 0.35rem; }
+        .reporter-podcast-title { font-family: var(--serif-title); font-size: 1.65rem; font-weight: 900; line-height: 1.2; margin-bottom: 0.55rem; }
+        .reporter-podcast-copy { color: #555; font-size: 0.92rem; font-weight: 500; line-height: 1.75; }
+        .reporter-episode-list { display: flex; flex-direction: column; gap: 0.55rem; }
+        #reporter-home-episode-buttons { display: flex; flex-direction: column; gap: 0.55rem; }
+        .reporter-episode-list-title { color: var(--ink-black); font-size: 0.82rem; font-weight: 900; margin-bottom: 0.2rem; }
+        .reporter-episode-button { border: 1px solid var(--line-gray); color: var(--ink-black); background: white; padding: 0.65rem 0.75rem; text-align: left; font-family: var(--serif-title); font-size: 0.9rem; font-weight: 900; line-height: 1.35; cursor: pointer; transition: all 0.2s ease; }
+        .reporter-episode-button:hover { border-color: var(--editor-blue); color: var(--editor-blue); }
+        .reporter-podcast-link { border: 1px solid var(--editor-blue); color: var(--editor-blue); display: inline-flex; align-items: center; justify-content: center; margin-top: 0.7rem; padding: 0.55rem 0.9rem; font-size: 0.78rem; font-weight: 900; width: max-content; transition: all 0.2s ease; }
+        .reporter-podcast-link:hover { background: var(--editor-blue); color: white; }
+        .reporter-podcast-link.is-disabled { opacity: 0.72; pointer-events: none; }
+        .reporter-side-rail { position: fixed; right: 1.5rem; top: 12.5rem; z-index: 60; display: flex; flex-direction: column; align-items: center; gap: clamp(0.85rem, 2.4vh, 2.1rem); color: var(--editor-blue); font-size: 1rem; font-weight: 900; line-height: 1.15; }
+        .reporter-side-rail button { writing-mode: vertical-rl; letter-spacing: 0.08em; white-space: nowrap; flex: 0 0 auto; padding: 0.55rem 0.35rem; transition: all 0.2s ease; }
+        .reporter-side-rail button.active { background: var(--editor-blue); color: white; }
+        .reporter-feature-row { display: grid; grid-template-columns: minmax(0, 1fr) 64px; gap: 2rem; align-items: start; }
+        .reporter-feature-story { max-width: 910px; margin: 0 auto; color: var(--ink-black); cursor: pointer; text-align: left; }
+        .reporter-feature-kicker { color: var(--editor-blue); font-size: 0.9rem; font-weight: 900; margin-bottom: 0.8rem; }
+        .reporter-feature-title { font-family: var(--serif-title); font-size: clamp(2rem, 5vw, 4.1rem); font-weight: 900; line-height: 1.16; letter-spacing: 0; margin-bottom: 1rem; color: var(--ink-black); }
+        .reporter-feature-summary { color: #555; font-size: 1.08rem; font-weight: 500; line-height: 1.9; max-width: 760px; margin-bottom: 1.8rem; }
+        .reporter-feature-meta { color: #777; font-size: 0.82rem; font-weight: 800; margin-bottom: 0.25rem; }
+        .reporter-feature-image { width: min(100%, 560px); aspect-ratio: 16 / 10; object-fit: cover; display: block; margin: 0 auto; background: #e8e8e8; }
+        .reporter-preview-controls { margin-top: 10rem; display: flex; flex-direction: column; gap: 0.8rem; }
+        .reporter-preview-button { width: 56px; height: 56px; border: 1px solid var(--editor-blue); color: var(--editor-blue); background: white; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; font-weight: 900; line-height: 1; cursor: pointer; transition: all 0.2s ease; }
+        .reporter-preview-button:hover { background: var(--editor-blue); color: white; }
+        .reporter-content-wrap { background: var(--paper-white); color: var(--ink-black); }
+        #col-grid-small.reporter-content-wrap .glass-card { background: #fff; color: var(--ink-black); border: 1px solid var(--line-gray); box-shadow: none; }
+        .article-filter-tool { border-top: 1px solid var(--line-gray); border-bottom: 1px solid var(--line-gray); margin-top: 0.8rem; padding: 1.2rem 0; display: grid; grid-template-columns: minmax(220px, 320px) minmax(0, 1fr); gap: 1.5rem; align-items: center; }
+        .article-filter-search { position: relative; }
+        .article-filter-search input { width: 100%; border: 1px solid rgba(0,0,0,0.18); color: var(--ink-black); padding: 0.72rem 2.8rem 0.72rem 1rem; font-size: 0.9rem; font-weight: 800; outline: none; }
+        .article-filter-search input:focus { border-color: var(--editor-blue); }
+        .article-filter-search button { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--editor-blue); }
+        .article-filter-cats { display: flex; gap: 1rem; overflow-x: auto; white-space: nowrap; padding-bottom: 0.15rem; }
+        .article-filter-cats .cat-text-btn { color: var(--ink-black); opacity: 0.75; font-size: 0.9rem; font-weight: 900; }
+        .article-filter-cats .cat-text-btn.active { color: var(--editor-blue); opacity: 1; border-bottom-color: var(--editor-blue); }
+        .peace-cta { background: #2b2b2b; color: white; margin: 1.4rem 0 1.2rem; padding: 1.55rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+        .peace-cta h2 { color: white; font-family: var(--serif-title); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; line-height: 1.2; margin-bottom: 0.45rem; }
+        .peace-cta p { color: rgba(255,255,255,0.88); font-size: 0.98rem; font-weight: 700; line-height: 1.7; }
+        .peace-cta a { background: var(--editor-blue); color: white; border-radius: 999px; padding: 0.85rem 1.6rem; font-weight: 900; white-space: nowrap; transition: transform 0.2s ease; }
+        .peace-cta a:hover { transform: translateY(-2px); }
+        .article-card-category { color: white; }
+        .article-card-title { color: white; font-family: var(--serif-title); font-weight: 900; }
+        .group:hover .article-card-title { color: white; }
+
+        @media (min-width: 1024px) {
+            .reporter-main-section { padding-right: 4.5rem; }
+            .reporter-side-rail { right: 0.85rem; }
+        }
+
+        @media (min-width: 769px) {
+            #detail-view { padding-top: 9.5rem; }
+            #detail-view .detail-back-button { margin-bottom: 20px !important; }
+        }
+
+        @media (max-width: 1180px) {
+            .reporter-picks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .reporter-podcast-section { grid-template-columns: 1fr; }
+            .reporter-podcast-shows { grid-template-columns: 1fr; }
+            .article-filter-tool { grid-template-columns: 1fr; }
+            .peace-cta { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (max-width: 1023px) {
+            .reporter-side-rail { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            #detail-view { padding-top: 8.45rem; }
+            #detail-view .detail-back-button { margin-bottom: 20px !important; }
+            #detail-view article.glass-card { padding-top: 0; }
+            .reporter-main-section { padding-top: 8.5rem; }
+            .reporter-hero-grid { display: block; }
+            .reporter-picks { display: flex; gap: 1.4rem; margin: 0 -1.5rem 2.4rem; padding: 0 1.5rem 0.25rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+            .reporter-pick-card { flex: 0 0 72%; scroll-snap-align: start; }
+            .reporter-pick-card img { aspect-ratio: 16 / 9; margin-bottom: 0.8rem; }
+            .reporter-category { color: #d7001f; font-size: 0.78rem; margin-bottom: 0.4rem; }
+            .reporter-pick-title { font-size: 1.1rem; line-height: 1.55; }
+            .reporter-feature-row { display: block; }
+            .reporter-preview-controls { margin: 2rem auto 0; flex-direction: row; justify-content: center; }
+            .reporter-feature-title { font-size: 2.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -616,17 +745,23 @@
     <div id="cursor"></div>
 
     <header class="fixed top-0 w-full z-[200]">
-        <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center glass-nav">
+        <nav class="px-6 py-4 md:px-10 md:py-5 flex justify-between items-center site-header-paper">
             <a href="index.html" onclick="goHome(true)" class="flex items-center gap-3">
-                <div class="w-3 h-3 bg-[var(--neon-lime)] rounded-full"></div>
-                <span class="text-2xl md:text-3xl font-black tracking-tighter italic uppercase">兩岸新聞網 | China-Taiwan Link</span>
+                <img src="https://hackmd.io/_uploads/Hki2gT8MMl.png" alt="兩岸直航CTL" class="h-12 md:h-14 w-auto object-contain">
             </a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-[0.2em] uppercase">
-                <a href="podcast.html" class="hover:text-[var(--neon-lime)] transition-all">PODCAST</a>
-                <a href="Collaborators.html" class="hover:text-[var(--neon-lime)] transition-all">合體者</a>
-                <a href="about.html" class="hover:text-[var(--neon-lime)] transition-all">關於我們</a>
-                <a href="contact.html" class="text-[var(--neon-lime)] border border-[var(--neon-lime)] px-5 py-1.5 rounded-full hover:bg-[var(--neon-lime)] hover:text-black transition-all font-black">聯絡我們</a>
-                <button type="button" data-lang-toggle class="border border-white/30 px-3 py-1.5 rounded-full hover:border-[var(--neon-lime)] hover:text-[var(--neon-lime)] transition-all font-black">简</button>
+            <div class="hidden lg:block text-sm font-bold text-gray-600">深度評論 × 跨域觀察 × 兩岸視角</div>
+            <div class="site-header-actions hidden md:flex items-center gap-5 text-sm font-bold uppercase">
+                <div class="site-header-search">
+                    <input type="text" id="main-search-input" placeholder="搜尋專欄...">
+                    <button onclick="handleMainSearch()" aria-label="搜尋">
+                        <iconify-icon icon="lucide:search" class="text-xl"></iconify-icon>
+                    </button>
+                </div>
+                <a href="podcast.html" class="transition-all">PODCAST</a>
+                <a href="Collaborators.html" class="transition-all">合體者</a>
+                <a href="about.html" class="transition-all">關於我們</a>
+                <a href="contact.html" class="site-outline-action transition-all font-black">聯絡我們</a>
+                <button type="button" data-lang-toggle class="site-lang-button transition-all font-black">简</button>
             </div>
             <button class="md:hidden text-4xl" onclick="toggleMenu()"><iconify-icon icon="lucide:menu"></iconify-icon></button>
         </nav>
@@ -650,51 +785,60 @@
         </div>
     </div>
 
-    <div id="main-wrap" class="bg-grid relative z-10 transition-opacity duration-500 min-h-screen">
-        <section class="pt-32 md:pt-32 px-6 pb-10">
+    <div id="main-wrap" class="reporter-shell relative z-10 transition-opacity duration-500">
+        <section class="reporter-main-section">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b-4 border-[var(--neon-lime)] pb-4 gap-6 md:gap-0">
-                    <img src="https://hackmd.io/_uploads/S1SLaSiJGe.png" alt="兩岸新聞社" class="h-[72px] md:h-[96px] object-contain mx-auto md:mx-0">
-                    <div class="relative w-full md:w-80 group/search">
-                        <input type="text" id="main-search-input" placeholder="搜尋專欄..." class="w-full bg-black/30 border border-white/20 text-white px-5 py-3 focus:outline-none focus:border-[var(--neon-lime)] transition-all text-sm font-bold italic">
-                        <button onclick="handleMainSearch()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 group-hover/search:text-[var(--neon-lime)] transition-colors">
-                            <iconify-icon icon="lucide:search" class="text-2xl"></iconify-icon>
+                <div class="reporter-category-nav" id="category-filters">
+                    <span class="reporter-menu-mark"><iconify-icon icon="lucide:menu"></iconify-icon></span>
+                    <button onclick="setHeroCategory('全部')" class="cat-text-btn active mr-8" data-cat="全部">最新文章</button>
+                    <button onclick="setHeroCategory('兩岸新聞')" class="cat-text-btn mr-8" data-cat="兩岸新聞">兩岸新聞</button>
+                    <button onclick="setHeroCategory('藝術文化')" class="cat-text-btn mr-8" data-cat="藝術文化">藝術文化</button>
+                    <button onclick="setHeroCategory('社會公眾')" class="cat-text-btn mr-8" data-cat="社會公眾">社會公眾</button>
+                    <button onclick="setHeroCategory('中台國際')" class="cat-text-btn mr-8" data-cat="中台國際">中台國際</button>
+                    <button onclick="setHeroCategory('政治政策')" class="cat-text-btn mr-8" data-cat="政治政策">政治政策</button>
+                    <button onclick="setHeroCategory('生活休閒')" class="cat-text-btn mr-8" data-cat="生活休閒">生活休閒</button>
+                    <button onclick="setHeroCategory('財經商業')" class="cat-text-btn mr-8" data-cat="財經商業">財經商業</button>
+                    <button onclick="setHeroCategory('趨勢報導')" class="cat-text-btn mr-8" data-cat="趨勢報導">趨勢報導</button>
+                </div>
+
+                <div id="hero-slider-wrap"></div>
+
+                <section class="peace-cta" aria-label="認識兩岸直航">
+                    <div>
+                        <h2>減少衝突及爭議，是我們匯聚於此的唯一目的。</h2>
+                        <p>我們期待與獨立思考者、跨域專家進行深度交流，一起為世界和平盡一份心。</p>
+                    </div>
+                    <a href="contact.html">聯絡我們</a>
+                </section>
+
+                <div class="article-filter-tool" id="rail-latest" data-rail-id="latest" aria-label="文章搜尋與主題篩選">
+                    <div class="article-filter-search">
+                        <input type="text" id="article-search-input" placeholder="搜尋文章關鍵字...">
+                        <button type="button" onclick="handleMainSearch('article-search-input')" aria-label="搜尋文章">
+                            <iconify-icon icon="lucide:search" class="text-xl"></iconify-icon>
                         </button>
                     </div>
-                </div>
-                
-                <div class="flex flex-col lg:flex-row gap-8 mb-16 items-start">
-                    <div id="hero-slider-wrap" class="lg:flex-grow lg:w-2/3 w-full group relative"></div>
-                    <div class="lg:w-[340px] w-full flex flex-col border-t lg:border-t-0 lg:border-l border-white/20 pt-6 lg:pt-0 lg:pl-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="w-1.5 h-6 bg-[var(--neon-lime)]"></span>
-                            <h3 class="text-2xl font-black italic uppercase tracking-tighter">兩岸新聞 TOP5</h3>
-                        </div>
-                        <div class="flex flex-col gap-6" id="top5-list">
-                            </div>
+                    <div class="article-filter-cats" aria-label="各類主題篩選">
+                        <button onclick="setCategory('全部')" class="cat-text-btn active" data-cat="全部">最新議題</button>
+                        <button onclick="setCategory('兩岸新聞')" class="cat-text-btn" data-cat="兩岸新聞">兩岸新聞</button>
+                        <button onclick="setCategory('藝術文化')" class="cat-text-btn" data-cat="藝術文化">藝術文化</button>
+                        <button onclick="setCategory('社會公眾')" class="cat-text-btn" data-cat="社會公眾">社會公眾</button>
+                        <button onclick="setCategory('中台國際')" class="cat-text-btn" data-cat="中台國際">中台國際</button>
+                        <button onclick="setCategory('政治政策')" class="cat-text-btn" data-cat="政治政策">政治政策</button>
+                        <button onclick="setCategory('生活休閒')" class="cat-text-btn" data-cat="生活休閒">生活休閒</button>
+                        <button onclick="setCategory('財經商業')" class="cat-text-btn" data-cat="財經商業">財經商業</button>
+                        <button onclick="setCategory('趨勢報導')" class="cat-text-btn" data-cat="趨勢報導">趨勢報導</button>
                     </div>
                 </div>
 
-                <div class="mb-10 flex border-t border-b border-white/20 py-4 overflow-x-auto whitespace-nowrap" id="category-filters">
-                    <button onclick="setCategory('全部')" class="cat-text-btn active mr-8" data-cat="全部">最新文章</button>
-                    <button onclick="setCategory('兩岸新聞')" class="cat-text-btn mr-8" data-cat="兩岸新聞">兩岸新聞</button>
-                    <button onclick="setCategory('藝術文化')" class="cat-text-btn mr-8" data-cat="藝術文化">藝術文化</button>
-                    <button onclick="setCategory('社會公眾')" class="cat-text-btn mr-8" data-cat="社會公眾">社會公眾</button>
-                    <button onclick="setCategory('中台國際')" class="cat-text-btn mr-8" data-cat="中台國際">中台國際</button>
-                    <button onclick="setCategory('政治政策')" class="cat-text-btn mr-8" data-cat="政治政策">政治政策</button>
-                    <button onclick="setCategory('生活休閒')" class="cat-text-btn mr-8" data-cat="生活休閒">生活休閒</button>
-                    <button onclick="setCategory('財經商業')" class="cat-text-btn mr-8" data-cat="財經商業">財經商業</button>
-                    <button onclick="setCategory('趨勢報導')" class="cat-text-btn mr-8" data-cat="趨勢報導">趨勢報導</button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="col-grid-small"></div>
+                <div class="reporter-content-wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8" id="col-grid-small" data-rail-id="latest"></div>
             </div>
         </section>
     </div>
 
-    <div id="detail-view" class="hidden bg-grid relative z-20 min-h-screen pt-32 md:pt-32 px-6 pb-24">
+    <div id="detail-view" class="hidden relative z-20 min-h-screen pt-40 md:pt-44 px-6 pb-24">
         <div class="max-w-4xl mx-auto">
-            <button onclick="goHome(true)" class="flex items-center gap-2 text-[var(--neon-lime)] hover:text-white transition-all mb-10 font-black tracking-widest text-sm uppercase bg-black/40 px-5 py-2 rounded-full border border-[var(--neon-lime)]/30 hover:bg-[var(--neon-lime)] hover:text-black">
+            <button onclick="goHome(true)" class="detail-back-button flex items-center gap-2 text-[var(--neon-lime)] transition-all mb-10 font-black tracking-widest text-sm uppercase px-5 py-2 rounded-full border border-[var(--neon-lime)]/30">
                 <iconify-icon icon="lucide:arrow-left"></iconify-icon> 返回新聞列表
             </button>
             
@@ -739,8 +883,10 @@
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('translate-x-full'); }
 
         const API_URL = "https://script.google.com/macros/s/AKfycbyN_EjJvXJfmHLVQr-oa55Gwmdhx-Sw5UZrwMeFMwwhr23KtA6VUkIQ9oXBBEfJyOQR/exec";
+        const PODCAST_API_URL = "https://script.google.com/macros/s/AKfycbwR4YmYVDeN6zPZRNda1bVzYVZljEhq7kds688xYxKnfpJUSVp0KZFRoC-oiYKcB2bv/exec";
         let MOCK_DATA = [];
-        let gridData = [], currentIndex = 0;
+        let HOME_PODCAST_EPISODES = [];
+        let gridData = [], currentIndex = 0, activeCategory = '全部';
         let slideIndex = 0, slideTimer;
         let scrollPosBeforeDetail = 0;
 
@@ -768,6 +914,7 @@
                 initHero();
                 buildTop5();
                 applyFilters('全部'); 
+                loadHomePodcastEpisodes().then(renderHomePodcastEpisodes);
 
                 // Hash 路由檢查
                 const hash = window.location.hash;
@@ -786,6 +933,12 @@
                         if(e.key === 'Enter') handleMainSearch();
                     });
                 }
+                const articleSearchInput = document.getElementById('article-search-input');
+                if(articleSearchInput) {
+                    articleSearchInput.addEventListener('keypress', (e) => {
+                        if(e.key === 'Enter') handleMainSearch('article-search-input');
+                    });
+                }
 
             } catch(e) {
                 console.error("API Fetch Error:", e);
@@ -793,12 +946,46 @@
             }
         };
 
+        async function loadHomePodcastEpisodes() {
+            try {
+                const res = await fetch(PODCAST_API_URL);
+                const json = await res.json();
+                const episodes = Array.isArray(json) ? json : (json.data || []);
+                const validEpisodes = episodes
+                    .filter(item => item.id && item.title)
+                    .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+                const liangAnEpisodes = validEpisodes.filter(item => (item.category || '').trim() === '兩岸01');
+                HOME_PODCAST_EPISODES = (liangAnEpisodes.length ? liangAnEpisodes : validEpisodes).slice(0, 5);
+            } catch (error) {
+                console.error("Podcast API Fetch Error:", error);
+                HOME_PODCAST_EPISODES = [];
+            }
+        }
+
+        function getHomePodcastEpisodeButtonsHTML() {
+            return HOME_PODCAST_EPISODES.length ? HOME_PODCAST_EPISODES.map((episode, index) => `
+                <button type="button" class="reporter-episode-button" onclick="window.location.href='podcast.html#id=${episode.id}'">
+                    ${index + 1}. ${episode.title}
+                </button>
+            `).join('') : `
+                <button type="button" class="reporter-episode-button" onclick="window.location.href='podcast.html'">
+                    前往 Podcast 頁面查看最新集數
+                </button>
+            `;
+        }
+
+        function renderHomePodcastEpisodes() {
+            const list = document.getElementById('reporter-home-episode-buttons');
+            if (list) list.innerHTML = getHomePodcastEpisodeButtonsHTML();
+        }
+
         function buildTop5() {
             const list = document.getElementById('top5-list');
+            if(!list) return;
             const top5 = MOCK_DATA.slice(0, 5); 
             list.innerHTML = top5.map((item, i) => `
                 <div class="flex gap-4 group/item cursor-pointer" onclick="openDetailById(${item.id})">
-                    <div class="brick-num bg-[${i < 3 ? '#CCFF00' : '#737373'}] text-black flex-shrink-0">${i+1}</div>
+                    <div class="brick-num bg-[${i < 3 ? '#5579e9' : '#737373'}] text-white flex-shrink-0">${i+1}</div>
                     <div class="flex flex-col">
                         <span class="text-[10px] font-bold opacity-40 mb-1">${item.date ? String(item.date).substring(0,10) : ''}</span>
                         <p class="text-sm font-black leading-tight group-hover/item:text-[var(--neon-lime)] transition-colors line-clamp-2">${item.title}</p>
@@ -809,35 +996,158 @@
 
         function initHero() {
             const wrap = document.getElementById('hero-slider-wrap');
-            const items = MOCK_DATA.slice(0, 5); 
+            const items = MOCK_DATA.slice(0, 6); 
             if(items.length === 0) return;
 
-            let slidesHTML = '';
-            let dotsHTML = '';
-            
-            items.forEach((item, index) => {
-                slidesHTML += `
-                    <div class="absolute inset-0 transition-opacity duration-1000 slide-item ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}" onclick="openDetailById(${item.id})">
-                        <img src="${item.image_url || 'https://picsum.photos/800/500'}" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent p-6 md:p-12 flex flex-col justify-end">
-                            <span class="text-[var(--neon-lime)] font-black text-sm tracking-widest uppercase mb-2">${item.category || '最新'}</span>
-                            <h3 class="font-black text-2xl md:text-5xl text-white group-hover:text-[var(--neon-lime)] transition-colors line-clamp-2">${item.title}</h3>
-                        </div>
+            const fallbackImage = 'https://picsum.photos/900/600';
+            let featureIndex = 0;
+            const stripText = (value) => String(value || '')
+                .replace(/<[^>]*>/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+            const truncate = (value, maxLength) => {
+                const text = stripText(value);
+                return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+            };
+            const sideLabels = [
+                { id: 'featured', label: '兩岸精選', target: 'rail-featured' },
+                { id: 'topics', label: '兩岸議題', target: 'rail-topics' },
+                { id: 'podcast', label: '兩岸播客', target: 'rail-podcast' },
+                { id: 'latest', label: '最新議題', target: 'rail-latest' }
+            ];
+            const buildPicksHTML = (cat = '全部') => {
+                const filteredItems = (cat === '全部' ? MOCK_DATA : MOCK_DATA.filter(item => item.category === cat)).slice(0, 6);
+                if (!filteredItems.length) {
+                    return `<div class="col-span-full py-10 text-center text-gray-400 font-bold">此分類目前沒有文章</div>`;
+                }
+                return filteredItems.map((item) => `
+                    <article class="reporter-pick-card" onclick="openDetailById(${item.id})">
+                        <img src="${item.image_url || fallbackImage}" alt="${item.title || '兩岸新聞'}">
+                        <div class="reporter-category">${item.category || '最新'}</div>
+                        <h3 class="reporter-pick-title line-clamp-3">${item.title}</h3>
+                    </article>
+                `).join('');
+            };
+            const episodeButtonsHTML = getHomePodcastEpisodeButtonsHTML();
+            const podcastHTML = `
+                <section class="reporter-podcast-section" id="rail-podcast" data-rail-id="podcast" aria-label="Podcast 專欄">
+                    <div>
+                        <div class="reporter-podcast-label">PODCAST</div>
+                        <h2 class="reporter-podcast-heading">用聽的掌握兩岸脈絡</h2>
                     </div>
-                `;
-                dotsHTML += `<div class="flex-1 h-1 bg-white/20 relative cursor-pointer" onclick="event.stopPropagation(); goToSlide(${index})"><div class="absolute top-0 left-0 h-full bg-[var(--neon-lime)] w-full transition-opacity duration-300 slide-dot ${index === 0 ? 'opacity-100' : 'opacity-0'}"></div></div>`;
-            });
+                    <div class="reporter-podcast-shows">
+                        <article class="reporter-podcast-card">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/04/b3/91/04b391e3-0bc3-ff7c-b551-bf5cf537b840/mza_18206253252599846307.jpeg/540x540bb.webp" alt="兩岸01 節目封面">
+                            <div>
+                                <div class="reporter-podcast-show-label">主打專欄</div>
+                                <h3 class="reporter-podcast-title">兩岸01</h3>
+                                <p class="reporter-podcast-copy">帶您穿透資訊迷霧，深度解析地緣政治、區域安全與政經脈動。</p>
+                                <a class="reporter-podcast-link" href="podcast.html">前往 PODCAST →</a>
+                            </div>
+                        </article>
+                        <article class="reporter-podcast-card secondary">
+                            <img src="https://hackmd.io/_uploads/S1ryIIsyzg.jpg" alt="合體吧!台灣 節目封面">
+                            <div>
+                                <div class="reporter-podcast-show-label">在地生活</div>
+                                <h3 class="reporter-podcast-title">合體吧!台灣</h3>
+                                <p class="reporter-podcast-copy">從兩岸文化衝擊到在地生活體驗，結合多元視角，帶來真實的社會脈動觀察。</p>
+                                <span class="reporter-podcast-link is-disabled">即將開播</span>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="reporter-episode-list">
+                        <div class="reporter-episode-list-title">集數選擇 / 5 集</div>
+                        <div id="reporter-home-episode-buttons">${episodeButtonsHTML}</div>
+                    </div>
+                </section>
+            `;
+            const railHTML = sideLabels.map((item) => `<button type="button" data-rail-target="${item.target}" data-rail-id="${item.id}">${item.label}</button>`).join('');
             
             wrap.innerHTML = `
-                <div class="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] rounded-xl overflow-hidden glass-card group cursor-pointer shadow-2xl">
-                    ${slidesHTML}
-                    <button class="nav-btn left-4" onclick="event.stopPropagation(); prevSlide()"><iconify-icon icon="lucide:chevron-left"></iconify-icon></button>
-                    <button class="nav-btn right-4" onclick="event.stopPropagation(); nextSlide()"><iconify-icon icon="lucide:chevron-right"></iconify-icon></button>
-                    <div class="absolute bottom-8 left-0 w-full px-6 md:px-12 flex gap-1 z-20">${dotsHTML}</div>
+                <div class="reporter-hero-grid">
+                    <div>
+                        <div class="reporter-picks" id="rail-featured" data-rail-id="featured">${buildPicksHTML()}</div>
+                        <div class="reporter-feature-row" id="rail-topics" data-rail-id="topics">
+                            <div id="reporter-feature-slot"></div>
+                            <div class="reporter-preview-controls">
+                                <button type="button" class="reporter-preview-button" id="reporter-prev-button" aria-label="上一篇新聞">←</button>
+                                <button type="button" class="reporter-preview-button" id="reporter-next-button" aria-label="下一篇新聞">→</button>
+                            </div>
+                        </div>
+                        ${podcastHTML}
+                    </div>
+                    <aside class="reporter-side-rail" aria-label="編輯分區">${railHTML}</aside>
                 </div>`;
-                
+            const featureSlot = document.getElementById('reporter-feature-slot');
+            const renderFeature = () => {
+                const feature = MOCK_DATA[featureIndex];
+                const featureSummary = truncate(feature.content_1 || feature.content_2 || feature.title, 118);
+                featureSlot.innerHTML = `
+                    <article class="reporter-feature-story" onclick="openDetailById(${feature.id})">
+                        <div class="reporter-feature-kicker">${feature.category || '最新'}</div>
+                        <h2 class="reporter-feature-title">${feature.title}</h2>
+                        <p class="reporter-feature-summary">${featureSummary}</p>
+                        <div class="reporter-feature-meta">${feature.date ? String(feature.date).substring(0, 10) : ''}</div>
+                        <img class="reporter-feature-image" src="${feature.image_url || fallbackImage}" alt="${feature.title || '兩岸新聞'}">
+                    </article>
+                `;
+            };
+            const prevButton = document.getElementById('reporter-prev-button');
+            const nextButton = document.getElementById('reporter-next-button');
+            prevButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                featureIndex = (featureIndex - 1 + MOCK_DATA.length) % MOCK_DATA.length;
+                renderFeature();
+            });
+            nextButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                featureIndex = (featureIndex + 1) % MOCK_DATA.length;
+                renderFeature();
+            });
+            renderFeature();
+            setupSideRailObserver();
+            window.setHeroCategory = (cat) => {
+                document.querySelectorAll('#category-filters .cat-text-btn').forEach(button => {
+                    button.classList.toggle('active', button.dataset.cat === cat);
+                });
+                const picks = document.getElementById('rail-featured');
+                if (picks) picks.innerHTML = buildPicksHTML(cat);
+            };
+                 
             slideIndex = 0;
-            startSlider();
+        }
+
+        function setupSideRailObserver() {
+            const buttons = Array.from(document.querySelectorAll('.reporter-side-rail button[data-rail-id]'));
+            const sections = Array.from(document.querySelectorAll('[data-rail-id]')).filter(section => !section.matches('.reporter-side-rail button'));
+            if (!buttons.length || !sections.length) return;
+
+            const setActive = (id) => {
+                buttons.forEach(button => button.classList.toggle('active', button.dataset.railId === id));
+            };
+            const updateActive = () => {
+                const focusLine = window.innerHeight * 0.45;
+                const current = sections.find(section => {
+                    const rect = section.getBoundingClientRect();
+                    return rect.top <= focusLine && rect.bottom >= focusLine;
+                }) || sections.reduce((closest, section) => {
+                    const rect = section.getBoundingClientRect();
+                    const distance = Math.abs(rect.top - focusLine);
+                    return !closest || distance < closest.distance ? { id: section.dataset.railId, distance } : closest;
+                }, null);
+                if (current) setActive(current.dataset ? current.dataset.railId : current.id);
+            };
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = document.getElementById(button.dataset.railTarget);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+            if (window.ctlSideRailHandler) window.removeEventListener('scroll', window.ctlSideRailHandler);
+            window.ctlSideRailHandler = updateActive;
+            window.addEventListener('scroll', updateActive, { passive: true });
+            updateActive();
         }
 
         function goToSlide(n) {
@@ -857,47 +1167,42 @@
         function prevSlide() { goToSlide(slideIndex - 1); }
         function startSlider() { clearInterval(slideTimer); slideTimer = setInterval(() => nextSlide(), 5000); }
 
-        function handleMainSearch() {
-            const searchInput = document.getElementById('main-search-input');
+        function handleMainSearch(sourceId = 'main-search-input') {
+            const searchInput = document.getElementById(sourceId);
             if(!searchInput) return;
             const keyword = searchInput.value.trim().toLowerCase();
-            
-            if (keyword === '') {
-                applyFilters('全部');
-                return;
-            }
-            
-            gridData = MOCK_DATA.filter(item => {
-                const t = (item.title || '').toLowerCase();
-                const c = (item.category || '').toLowerCase();
-                const b = (item.content_1 || '').toLowerCase();
-                return t.includes(keyword) || c.includes(keyword) || b.includes(keyword);
+
+            document.querySelectorAll('#main-search-input, #article-search-input').forEach(input => {
+                if (input.id !== sourceId) input.value = searchInput.value;
             });
-            
-            document.querySelectorAll('.cat-text-btn').forEach(b => b.classList.remove('active'));
+            applyFilters(activeCategory);
+
             const container = document.getElementById('col-grid-small');
-            container.innerHTML = '';
-            currentIndex = 0;
-            
-            if (gridData.length === 0) {
-                container.innerHTML = `<div class="col-span-full py-20 text-center text-gray-400 font-bold text-xl">找不到包含「${keyword}」的文章</div>`;
-            } else {
-                loadMore();
-            }
             const offsetTop = container.parentElement.offsetTop;
             if(offsetTop) window.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
         }
 
         function setCategory(cat) {
-            document.querySelectorAll('.cat-text-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+            activeCategory = cat;
+            document.querySelectorAll('.article-filter-cats .cat-text-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
             applyFilters(cat);
         }
 
         function applyFilters(cat) {
-            const dataToDisplay = MOCK_DATA; 
-            gridData = (cat === '全部') ? dataToDisplay : dataToDisplay.filter(i => i.category === cat);
-            document.getElementById('col-grid-small').innerHTML = '';
+            const keyword = ((document.getElementById('article-search-input') || document.getElementById('main-search-input'))?.value || '').trim().toLowerCase();
+            gridData = MOCK_DATA.filter(item => {
+                const matchesCategory = cat === '全部' || item.category === cat;
+                const text = `${item.title || ''} ${item.category || ''} ${item.content_1 || ''} ${item.content_2 || ''}`.toLowerCase();
+                return matchesCategory && (!keyword || text.includes(keyword));
+            });
+            const container = document.getElementById('col-grid-small');
+            container.innerHTML = '';
             currentIndex = 0;
+            if (gridData.length === 0) {
+                const label = keyword ? `「${keyword}」` : cat;
+                container.innerHTML = `<div class="col-span-full py-20 text-center text-gray-400 font-bold text-xl">找不到符合 ${label} 的文章</div>`;
+                return;
+            }
             loadMore();
         }
 
@@ -906,13 +1211,13 @@
             const nextBatch = gridData.slice(currentIndex, currentIndex + 9);
             nextBatch.forEach(item => {
                 const card = document.createElement('div');
-                card.className = `glass-card relative group reveal aspect-[4/3] md:aspect-auto md:h-[360px] rounded-xl cursor-pointer`;
+                card.className = `glass-card relative group reveal aspect-[4/3] md:aspect-auto md:h-[360px] cursor-pointer`;
                 const displayDate = item.date ? String(item.date).substring(0, 10) : '';
                 card.innerHTML = `
                     <img src="${item.image_url || 'https://picsum.photos/800/500'}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-8 flex flex-col justify-end z-10">
-                        <span class="text-[var(--neon-lime)] font-black text-[10px] tracking-widest mb-1 uppercase">${item.category || '未分類'}</span>
-                        <h4 class="font-black text-xl group-hover:text-[var(--neon-lime)] transition-colors line-clamp-2">${item.title}</h4>
+                        <span class="article-card-category font-black text-[10px] tracking-widest mb-1 uppercase">${item.category || '未分類'}</span>
+                        <h4 class="article-card-title text-xl transition-colors line-clamp-2">${item.title}</h4>
                         <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center text-[10px] opacity-40 font-bold">
                             <span>PUB DATE: ${displayDate}</span>
                             <span class="text-[var(--neon-lime)]">READ MORE ➔</span>
@@ -1015,9 +1320,9 @@
                 card.className = `glass-card relative group aspect-[4/3] md:aspect-auto md:h-[280px] rounded-xl cursor-pointer overflow-hidden border border-white/10`;
                 card.innerHTML = `
                     <img src="${item.image_url || 'https://picsum.photos/400/300'}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent p-6 flex flex-col justify-end z-10">
-                        <span class="text-[var(--neon-lime)] font-black text-[10px] tracking-widest mb-1 uppercase">${item.category}</span>
-                        <h4 class="font-black text-lg group-hover:text-[var(--neon-lime)] transition-colors leading-tight line-clamp-2">${item.title}</h4>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end z-10">
+                        <span class="article-card-category font-black text-[10px] tracking-widest mb-1 uppercase">${item.category}</span>
+                        <h4 class="article-card-title text-lg transition-colors leading-tight line-clamp-2">${item.title}</h4>
                     </div>`;
                 card.onclick = () => openDetail(item); 
                 recGrid.appendChild(card);
