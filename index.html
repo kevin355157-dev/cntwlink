@@ -1016,7 +1016,9 @@
                 { id: 'latest', label: '最新議題', target: 'rail-latest' }
             ];
             const buildPicksHTML = (cat = '全部') => {
-                const filteredItems = (cat === '全部' ? MOCK_DATA : MOCK_DATA.filter(item => item.category === cat)).slice(0, 6);
+                const filteredItems = cat === '全部'
+                    ? MOCK_DATA.slice(5, 11)
+                    : MOCK_DATA.filter(item => item.category === cat).slice(0, 6);
                 if (!filteredItems.length) {
                     return `<div class="col-span-full py-10 text-center text-gray-400 font-bold">此分類目前沒有文章</div>`;
                 }
