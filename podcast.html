@@ -894,8 +894,24 @@
         ];
 
         // ================= API 連動設定 =================
-        const API_URL = "https://script.google.com/macros/s/AKfycbwR4YmYVDeN6zPZRNda1bVzYVZljEhq7kds688xYxKnfpJUSVp0KZFRoC-oiYKcB2bv/exec";
+        const SUPABASE_URL = "https://obnodvcqdtcfijfkfjjn.supabase.co";
+        const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_7NB9CPXaMZ6q68GxBjAaWQ_-nxwAbub";
+        const SUPABASE_HEADERS = {
+            apikey: SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+        };
         const DEFAULT_EMBED = "https://embed.podcasts.apple.com/tw/podcast/01%E5%85%A9%E5%B2%B8%E6%96%B0%E8%81%9E-%E4%B8%AD%E6%97%A5%E8%81%AF%E5%90%88%E5%9C%8B%E6%BF%80%E7%83%88%E4%BA%A4%E9%8B%92-%E4%B8%AD%E6%96%B9%E9%BB%9E%E5%90%8D%E8%AD%A6%E5%91%8A-%E8%AD%A6%E6%83%95%E6%97%A5%E6%9C%AC-%E7%84%A1%E6%A0%B8%E4%B8%89%E5%8E%9F%E5%89%87-%E5%90%8D%E5%AD%98%E5%AF%A6%E4%BA%A1/id1887752048?i=1000766284838&theme=dark";
+
+        function buildSupabaseUrl(table, params = {}) {
+            const query = new URLSearchParams(params);
+            return `${SUPABASE_URL}/rest/v1/${table}?${query.toString()}`;
+        }
+
+        async function fetchSupabaseRows(table, params = {}) {
+            const response = await fetch(buildSupabaseUrl(table, params), { headers: SUPABASE_HEADERS });
+            if (!response.ok) throw new Error(`Supabase ${table} request failed: ${response.status}`);
+            return response.json();
+        }
 
         let PODCAST_DATA = [];
         let slideIndex = 0, slideTimer;
@@ -911,10 +927,11 @@
             gridEl.innerHTML = '<div class="col-span-full py-20 text-center text-[var(--neon-lime)] font-black text-xl tracking-widest animate-pulse">正在同步雲端資料庫...</div>';
             
             try {
-                const res = await fetch(API_URL);
-                const json = await res.json();
-                
-                PODCAST_DATA = Array.isArray(json) ? json : (json.data || []);
+                PODCAST_DATA = await fetchSupabaseRows('podcast_episodes', {
+                    select: '*',
+                    published: 'eq.true',
+                    order: 'date.desc'
+                });
                 PODCAST_DATA = PODCAST_DATA.filter(item => item.id && item.title);
                 PODCAST_DATA.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 

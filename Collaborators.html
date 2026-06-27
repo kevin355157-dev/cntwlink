@@ -709,9 +709,25 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // API 網址
-        const API_URL = "https://script.google.com/macros/s/AKfycbxRtqBI4VOqbMORgrHEgXALAQGJvRrYpLPG5EIsxwjXVBXTyZJCGdc_892L4RxNsbxYAw/exec";
+        // Supabase 連動設定
+        const SUPABASE_URL = "https://obnodvcqdtcfijfkfjjn.supabase.co";
+        const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_7NB9CPXaMZ6q68GxBjAaWQ_-nxwAbub";
+        const SUPABASE_HEADERS = {
+            apikey: SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+        };
         const gridContainer = document.getElementById('collab-grid');
+
+        function buildSupabaseUrl(table, params = {}) {
+            const query = new URLSearchParams(params);
+            return `${SUPABASE_URL}/rest/v1/${table}?${query.toString()}`;
+        }
+
+        async function fetchSupabaseRows(table, params = {}) {
+            const response = await fetch(buildSupabaseUrl(table, params), { headers: SUPABASE_HEADERS });
+            if (!response.ok) throw new Error(`Supabase ${table} request failed: ${response.status}`);
+            return response.json();
+        }
 
         // 手機版選單開關
         function toggleMenu() { 
@@ -761,10 +777,11 @@
         // 從 API 抓取資料
         async function fetchCollaborators() {
             try {
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error('網路回應不正確');
-                
-                const data = await response.json();
+                const data = await fetchSupabaseRows('collaborators', {
+                    select: '*',
+                    published: 'eq.true',
+                    order: 'sort_order.asc,id.asc'
+                });
                 
                 gridContainer.innerHTML = '';
 
