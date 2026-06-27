@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -767,7 +767,7 @@
         </nav>
         <div class="marquee-container">
             <div class="marquee-content">
-                <span>兩岸新聞網專注深度評論兩岸時事，由獨立學者以跨域視角還原真實脈絡 | 拆解隔閡，思想直航；兩岸合體，共譜新章。帶您消弭偏見，重構多維度的思考骨架。</span>
+                <span>兩岸新聞網專注深度評論兩岸時事，由獨立學者以跨域視角還原真實脈絡，拆解隔閡，思想直航；兩岸合體，共譜新章。帶您消弭偏見，重構多維度的思考骨架。</span>
                 <span>【快訊】兩岸關係新突破，經貿論壇於上海登場。／【快訊】台積電法說會優於預期，帶動台股科技板塊全面翻紅。</span>
             </div>
         </div>
@@ -1037,7 +1037,7 @@
                 { id: 'latest', label: '最新議題', target: 'rail-latest' }
             ];
             const buildPicksHTML = (cat = '全部') => {
-                const filteredItems = (cat === '全部' ? MOCK_DATA : MOCK_DATA.filter(item => item.category === cat)).slice(0, 6);
+                const filteredItems = cat === '全部' ? MOCK_DATA.slice(5, 11) : MOCK_DATA.filter(item => item.category === cat).slice(0, 6);
                 if (!filteredItems.length) {
                     return `<div class="col-span-full py-10 text-center text-gray-400 font-bold">此分類目前沒有文章</div>`;
                 }
